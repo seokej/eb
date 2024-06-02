@@ -127,16 +127,24 @@ export const EbComponentStyle = styled.div`
   .section2 {
     position: relative;
     width: 100%;
-    height: 100dvh;
+    height: 100vh;
 
-    .section2-wrap {
+    .section2-img-wrap {
       position: absolute;
-      width: 100%;
-      height: 100vh;
       top: 0;
       left: 0;
-      overflow: hidden;
-      object-fit: cover;
+      width: 100%;
+      height: 100vh;
+
+      .section2-img-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        overflow: hidden;
+      }
 
       img {
         width: 100%;
@@ -176,6 +184,17 @@ export const EbComponentStyle = styled.div`
       opacity: 0;
       font-size: 24px;
       font-weight: 600;
+    }
+
+    .section2-text4-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 100dvh;
+      z-index: 3;
+      overflow: hidden;
     }
   }
 `;
@@ -257,7 +276,20 @@ function App() {
         { backgroundColor: "rgba(0,0,0,0)", duration: 20 },
         "b"
       )
-      .to(".section2-text-title-wrap", { autoAlpha: 0, duration: 100 }, "+=1");
+      .to(".section2-text-title-wrap", { autoAlpha: 0, duration: 20 }, "+=1")
+      .to(".section2 .section2-img-inner:nth-child(3)", {
+        height: 0,
+        duration: 20,
+      })
+      .to(".section2 .section2-img-inner:nth-child(2)", {
+        height: 0,
+        duration: 20,
+      })
+      .to(".ssection2 .section2-text4-bg", {
+        backgroundColor: "rgba(0,0,0,0.4)",
+        duration: 20,
+      })
+      .from(".section2 .section2-text4", { autoAlpha: 0, duration: 20 });
 
     /**
      * section2 관련 scroll 애니메이션 코드
@@ -363,16 +395,36 @@ function App() {
 
       <section className="section section2">
         <div className="section2-bg" />
-        <div className="section2-wrap">
-          <img src="/images/img-showcase01-pc.jpg" alt="기록하는모습" />
-          <img src="/images/img-showcase02-pc.jpg" alt="플룻" />
-          <img src="/images/img-showcase03-pc.jpg" alt="자전거" />
+        <div className="section2-img-wrap">
+          <div className="section2-img-inner">
+            <img
+              className="section2-img section2-img03"
+              src="/images/img-showcase03-pc.jpg"
+              alt="자전거"
+            />
+          </div>
+          <div className="section2-img-inner">
+            <img
+              className="section2-img section2-img02"
+              src="/images/img-showcase02-pc.jpg"
+              alt="플룻"
+            />
+          </div>
+          <div className="section2-img-inner">
+            <img
+              className="section2-img section2-img01"
+              src="/images/img-showcase01-pc.jpg"
+              alt="기록하는모습"
+            />
+          </div>
         </div>
         <div className="section2-text-title-wrap">
           <p className="section2-text section2-text1">기록하고</p>
           <p className="section2-text section2-text2">증명하고</p>
           <p className="section2-text section2-text3">성장하기</p>
         </div>
+
+        {/* <div className="section2-text4-bg" /> */}
         <p className="section2-text section2-text4">
           엔터프라이즈블록체인은 블록체인 네트워크 <br />
           DATA ID를 활용해 그 문제를 해결하고 새로운 방식을 <br />
