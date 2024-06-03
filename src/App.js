@@ -1,8 +1,8 @@
 import "./App.css";
 import "./notosans.css";
 import styled from "@emotion/styled";
-import { jsx, css } from "@emotion/react";
-import React, { useRef, useLayoutEffect } from "react";
+// import { jsx, css } from "@emotion/react";
+import React from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -115,6 +115,7 @@ export const EbComponentStyle = styled.div`
       word-break: keep-all;
       transform: translate(-50%, -50%);
       z-index: 3;
+      opacity: 0;
     }
 
     .section1-text4 {
@@ -206,42 +207,6 @@ function App() {
     var ele = document.getElementById("header");
 
     /**
-     * section1 관련 timeline 코드
-     */
-    const section1 = gsap.timeline();
-
-    section1
-      .addLabel("a")
-      .to(
-        ".section1-bg",
-        { backgroundColor: "rgba(0,0,0,0.6)", duration: 100 },
-        "a"
-      )
-      .from(".section1-text1", { autoAlpha: 0, duration: 100 }, "a")
-      .to(".section1-text1", { autoAlpha: 0, duration: 100 }, "+=1")
-      .from(".section1-text2", { autoAlpha: 0, duration: 100 }, "+=1")
-      .to(".section1-text2", { autoAlpha: 0, duration: 100 }, "+=1")
-      .from(".section1-text3", { autoAlpha: 0, duration: 100 }, "+=1")
-      .to(".section1-text3", { autoAlpha: 0, duration: 100 }, "+=1")
-      .from(".section1-text4", { autoAlpha: 0, duration: 100 }, "+=1");
-
-    /**
-     * section1 관련 scroll 코드
-     */
-    ScrollTrigger.create({
-      animation: section1,
-      trigger: ".section1",
-      start: "top top",
-      end: "+=7000",
-      scrub: true,
-      pin: true,
-      toggleClass: {
-        targets: "#top-btn",
-        className: "hide",
-      },
-    });
-
-    /**
      * nav 관련 scroll 애니메이션 코드
      */
     ScrollTrigger.create({
@@ -257,9 +222,64 @@ function App() {
     });
 
     /**
-     * section2 관련 timeline 코드
+     * section1 관련 animation 코드
      */
-    const section2 = gsap.timeline();
+    const section1 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section1",
+        start: "top top",
+        end: "+=7000",
+        scrub: true,
+        pin: true,
+        toggleClass: {
+          targets: "#top-btn",
+          className: "hide",
+        },
+      },
+    });
+
+    document
+      .querySelectorAll(".section1-text-wrap p")
+      .forEach((elem, index, array) => {
+        section1.to(elem, { opacity: 1 });
+        if (index !== array.length - 1) {
+          // 마지막 요소를 제외한 모든 요소
+          if (index === 0) {
+            // 첫번째 요소
+            section1.to(".section1 .section1-bg", { "--opacity": 1 }); // 배경 dimm 처리
+          }
+          section1.to(elem, { opacity: 0 });
+        }
+      });
+
+    // section1
+    //   .addLabel("a")
+    //   .to(
+    //     ".section1-bg",
+    //     { backgroundColor: "rgba(0,0,0,0.6)", duration: 100 },
+    //     "a"
+    //   )
+    //   .from(".section1-text1", { autoAlpha: 0, duration: 100 }, "a")
+    //   .to(".section1-text1", { autoAlpha: 0, duration: 100 }, "+=1")
+    //   .from(".section1-text2", { autoAlpha: 0, duration: 100 }, "+=1")
+    //   .to(".section1-text2", { autoAlpha: 0, duration: 100 }, "+=1")
+    //   .from(".section1-text3", { autoAlpha: 0, duration: 100 }, "+=1")
+    //   .to(".section1-text3", { autoAlpha: 0, duration: 100 }, "+=1")
+    //   .from(".section1-text4", { autoAlpha: 0, duration: 100 }, "+=1");
+
+    /**
+     * section2 관련 animation 코드
+     */
+    const section2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section2",
+        start: "top top",
+        end: "+=7000",
+        scrub: true,
+        pin: true,
+        markers: true,
+      },
+    });
 
     section2
       .addLabel("a")
@@ -276,6 +296,7 @@ function App() {
         { backgroundColor: "rgba(0,0,0,0)", duration: 20 },
         "b"
       )
+<<<<<<< Updated upstream
       .to(".section2-text-title-wrap", { autoAlpha: 0, duration: 20 }, "+=1")
       .to(".section2 .section2-img-inner:nth-child(3)", {
         height: 0,
@@ -303,6 +324,9 @@ function App() {
       pin: true,
       markers: true,
     });
+=======
+      .to(".section2-text-title-wrap", { autoAlpha: 0, duration: 100 }, "+=1");
+>>>>>>> Stashed changes
   }, []);
 
   return (
