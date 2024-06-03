@@ -113,6 +113,7 @@ export const EbComponentStyle = styled.div`
       font-weight: 700;
       line-height: 1.35;
       word-break: keep-all;
+      white-space: nowrap;
       transform: translate(-50%, -50%);
       z-index: 3;
       opacity: 0;
@@ -122,6 +123,13 @@ export const EbComponentStyle = styled.div`
       font-size: 24px;
       line-height: 1.67;
       font-weight: 700;
+    }
+
+    .section1-text5 {
+      font-size: 24px;
+      line-height: 1.67;
+      font-weight: 700;
+      /* opacity: 1; */
     }
   }
 
@@ -181,10 +189,28 @@ export const EbComponentStyle = styled.div`
       line-height: 1.2;
     }
 
+    .section2-text-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 100dvh;
+      z-index: 3;
+      overflow: hidden;
+    }
+
     .section2-text4 {
-      opacity: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 0 32px;
+      transform: translate(-50%, -50%);
       font-size: 24px;
       font-weight: 600;
+      line-height: 1.8;
+      word-break: keep-all;
+      z-index: 4;
     }
 
     .section2-text4-bg {
@@ -241,31 +267,21 @@ function App() {
     document
       .querySelectorAll(".section1-text-wrap p")
       .forEach((elem, index, array) => {
-        section1.to(elem, { opacity: 1 });
-        if (index !== array.length - 1) {
-          // 마지막 요소를 제외한 모든 요소
-          if (index === 0) {
-            // 첫번째 요소
-            section1.to(".section1 .section1-bg", { "--opacity": 1 }); // 배경 dimm 처리
+        if (index === array.length) {
+          section1.from(elem, { opacity: 1, duration: 20 }, "+=1");
+        } else {
+          section1.to(elem, { autoAlpha: 1, duration: 20 });
+          if (index !== array.length - 2) {
+            if (index === 0) {
+              section1.to(".section1 .section1-bg", {
+                backgroundColor: "rgba(0,0,0,0.6)",
+                duration: 20,
+              });
+            }
+            section1.to(elem, { autoAlpha: 0, duration: 100 }, "+=1");
           }
-          section1.to(elem, { opacity: 0 });
         }
       });
-
-    // section1
-    //   .addLabel("a")
-    //   .to(
-    //     ".section1-bg",
-    //     { backgroundColor: "rgba(0,0,0,0.6)", duration: 100 },
-    //     "a"
-    //   )
-    //   .from(".section1-text1", { autoAlpha: 0, duration: 100 }, "a")
-    //   .to(".section1-text1", { autoAlpha: 0, duration: 100 }, "+=1")
-    //   .from(".section1-text2", { autoAlpha: 0, duration: 100 }, "+=1")
-    //   .to(".section1-text2", { autoAlpha: 0, duration: 100 }, "+=1")
-    //   .from(".section1-text3", { autoAlpha: 0, duration: 100 }, "+=1")
-    //   .to(".section1-text3", { autoAlpha: 0, duration: 100 }, "+=1")
-    //   .from(".section1-text4", { autoAlpha: 0, duration: 100 }, "+=1");
 
     /**
      * section2 관련 animation 코드
@@ -296,7 +312,6 @@ function App() {
         { backgroundColor: "rgba(0,0,0,0)", duration: 20 },
         "b"
       )
-<<<<<<< Updated upstream
       .to(".section2-text-title-wrap", { autoAlpha: 0, duration: 20 }, "+=1")
       .to(".section2 .section2-img-inner:nth-child(3)", {
         height: 0,
@@ -306,27 +321,11 @@ function App() {
         height: 0,
         duration: 20,
       })
-      .to(".ssection2 .section2-text4-bg", {
+      .to(".section2 .section2-text-bg", {
         backgroundColor: "rgba(0,0,0,0.4)",
         duration: 20,
       })
       .from(".section2 .section2-text4", { autoAlpha: 0, duration: 20 });
-
-    /**
-     * section2 관련 scroll 애니메이션 코드
-     */
-    ScrollTrigger.create({
-      animation: section2,
-      trigger: ".section2",
-      start: "top top",
-      end: "+=7000",
-      scrub: true,
-      pin: true,
-      markers: true,
-    });
-=======
-      .to(".section2-text-title-wrap", { autoAlpha: 0, duration: 100 }, "+=1");
->>>>>>> Stashed changes
   }, []);
 
   return (
@@ -413,6 +412,11 @@ function App() {
               <br />
               신뢰할 만한 자산으로 측정하기 위해서는 어떻게 관리해야 할까요?
             </p>
+            <p className="section1-text section1-text5">
+              증명하기 어려운 개인의 창작 활동과 프리랜서 경험을 보호하고
+              <br />
+              신뢰할 만한 자산으로 측정하기 위해서는 어떻게 관리해야 할까요?
+            </p>
           </div>
         </div>
       </section>
@@ -447,8 +451,7 @@ function App() {
           <p className="section2-text section2-text2">증명하고</p>
           <p className="section2-text section2-text3">성장하기</p>
         </div>
-
-        {/* <div className="section2-text4-bg" /> */}
+        <div className="section2-text-bg" />
         <p className="section2-text section2-text4">
           엔터프라이즈블록체인은 블록체인 네트워크 <br />
           DATA ID를 활용해 그 문제를 해결하고 새로운 방식을 <br />
