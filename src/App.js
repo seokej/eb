@@ -129,7 +129,6 @@ export const EbComponentStyle = styled.div`
       font-size: 24px;
       line-height: 1.67;
       font-weight: 700;
-      /* opacity: 1; */
     }
   }
 
@@ -226,15 +225,81 @@ export const EbComponentStyle = styled.div`
   }
 
   .section3 {
+    padding: 235px 100px 80px;
+    color: #000;
     background-color: #fff;
+
+    .section3-text-wrap {
+      font-size: 72px;
+      font-weight: bold;
+      color: #000;
+      line-height: 1.28;
+    }
+
+    .section3-text-desc-wrap {
+      max-width: 50%;
+      margin-left: auto;
+      padding-left: 100px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.67;
+    }
   }
 
-  .section3-text-wrap {
-    margin: 0 100px;
-    font-size: 72px;
-    font-weight: bold;
-    color: #000;
-    line-height: 1.28;
+  .section4 {
+    position: relative;
+    color: #fff;
+    height: 75vh;
+    background: url(/images/prove.jpg) no-repeat 50% / contain;
+    overflow: hidden;
+
+    .sction4-bg-wrap {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .section4-bg-before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 400px;
+      height: 150px;
+      background: #fff;
+    }
+
+    .section4-bg-after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 400px;
+      height: 150px;
+      background: #fff;
+    }
+
+    .section4-img {
+      position: relative;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      max-width: 100%;
+      height: auto;
+    }
+
+    .section4-text-wrap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.28;
+      transform: translate(-50%, -50%);
+    }
   }
 `;
 
@@ -338,6 +403,26 @@ function App() {
         duration: 20,
       })
       .from(".section2 .section2-text4", { autoAlpha: 0, duration: 20 });
+
+    /**
+     * section4 관련 animation 코드
+     */
+    const section4 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section4",
+        start: "-10% 52%",
+        end: "45% 52%",
+        scrub: true,
+        markers: true,
+      },
+    });
+
+    section4
+      .addLabel("a")
+      .from(".section4-bg-before", 1, { xPercent: 100, duration: 1 }, "a")
+      .from(".section4-bg-after", { xPercent: -100, duration: 1 }, "a")
+      .to(".section4-text1", { xPercent: -165, duration: 1 }, "a")
+      .to(".section4-text3", { xPercent: 130, duration: 1 }, "a");
   }, []);
 
   return (
@@ -476,7 +561,7 @@ function App() {
           <p>크리에이터</p>
         </div>
 
-        <div>
+        <div className="section3-text-desc-wrap">
           파트타임 단기업무, 부업, 프리랜서 활동. <br />
           그 어떤 것도 상관없어요. <br />
           분산되어 있던 소득과 거래 이력부터 자격, 창작물 등의 <br />
@@ -485,32 +570,17 @@ function App() {
         </div>
       </section>
 
-      {/* 
-      <section>
-        <div>
-          <p>긱 워커</p>
-          <p>개인사업자</p>
-          <p>크리에이터</p>
+      <section className="section4">
+        <div className="sction4-bg-wrap">
+          <div className="section4-bg-before" />
+          <div className="section4-bg-after" />
         </div>
-
-        <div>
-          파트타임 단기업무, 부업, 프리랜서 활동. <br />
-          그 어떤 것도 상관없어요. <br />
-          분산되어 있던 소득과 거래 이력부터 자격, 창작물 등의 <br />
-          재능 상세를 담은 포트폴리오까지. <br />
-          나의 이력과 재능을 증명할 정보를 모두 담을 수 있어요.
+        <div className="section4-text-wrap">
+          <p className="section4-text1">가치를</p>
+          <p className="section4-text2">증명하고 싶다면</p>
+          <p className="section4-text3">누구든지.</p>
         </div>
       </section>
-      */}
-
-      {/*
-      <section>
-        <p>가치를</p>
-        <p>증명하고 싶다면</p>
-        <p>누구든지.</p>
-        <img src="/images/eb/prove.jpg" alt="해변" />
-      </section>
-      */}
 
       {/*
       <section>
@@ -521,15 +591,15 @@ function App() {
         </div>
         <div>
           <div>
-            <img src="/images/eb/talent-01.jpg" alt="플라워클래스" />
+            <img src="/images/talent-01.jpg" alt="플라워클래스" />
             플라워 클래스를 운영하는 정호영 씨도
           </div>
           <div>
-            <img src="/images/eb/talent-02.jpg" alt="바리스타" />
+            <img src="/images/talent-02.jpg" alt="바리스타" />
             카페를 운영하는 김은혜 씨도
           </div>
           <div>
-            <img src="/images/eb/talent-03.jpg" alt="개발자" />
+            <img src="/images/talent-03.jpg" alt="개발자" />
             프리랜서 개발자 송보름 씨도
           </div>
         </div>
@@ -546,28 +616,28 @@ function App() {
           </div>
           <div>
             <div>
-              <img src="/images/eb/possibility-system.png" alt="블럭" />
+              <img src="/images/possibility-system.png" alt="블럭" />
               기축데이터, 금융, <br />
               사회 전반 시스템 부재
             </div>
             <div>
-              <img src="/images/eb/possibility-prove.png" alt="증명서" />
+              <img src="/images/possibility-prove.png" alt="증명서" />
               개인의 소득 증빙, 재능 <br />
               증명 필요
             </div>
             <div>
-              <img src="/images/eb/possibility-nft.png" alt="DATAID" />
+              <img src="/images/possibility-nft.png" alt="DATAID" />
               DATA ID 통해 재능 자산 <br />
               소유권 증명
             </div>
             <div>
-              <img src="/images/eb/possibility-global.png" alt="네트워크" />
+              <img src="/images/possibility-global.png" alt="네트워크" />
               커리어 성장, <br />
               금융 혜택으로 연결
             </div>
           </div>
           <div>
-            <img src="/images/eb/graphic-cut-pc.png" alt="큐브" />
+            <img src="/images/graphic-cut-pc.png" alt="큐브" />
           </div>
         </div>
         <div>
@@ -614,7 +684,7 @@ function App() {
             <div>
               <span>CREATOR</span>
               <span>****</span>
-              <img src="/images/eb/card-code-img-1.png" alt="code" />
+              <img src="/images/card-code-img-1.png" alt="code" />
             </div>
             <div>
               <span>
@@ -623,7 +693,7 @@ function App() {
                 WORKER
               </span>
               <span>****</span>
-              <img src="/images/eb/card-code-img-2.png" alt="code" />
+              <img src="/images/card-code-img-2.png" alt="code" />
             </div>
             <div>
               <span>
@@ -632,11 +702,11 @@ function App() {
                 EMPLOYED
               </span>
               <span>****</span>
-              <img src="/images/eb/card-code-img-3.png" alt="code" />
+              <img src="/images/card-code-img-3.png" alt="code" />
             </div>
             <div>
-              <img src="/images/eb/unlock-icon.png" alt="unlock" />
-              <img src="/images/eb/lock-icon.png" alt="lock" />
+              <img src="/images/unlock-icon.png" alt="unlock" />
+              <img src="/images/lock-icon.png" alt="lock" />
             </div>
             <div>
               <span>DATA ID</span>
@@ -688,15 +758,15 @@ function App() {
 
               <div>
                 <div>
-                  <img src="/images/eb/service-item-1.png" alt="요긱(Yogig)" />
+                  <img src="/images/service-item-1.png" alt="요긱(Yogig)" />
                   일거리 매칭 서비스 요긱(Yogig)
                 </div>
                 <div>
-                  <img src="/images/eb/service-item-2.png" alt="어랏(Alot)" />
+                  <img src="/images/service-item-2.png" alt="어랏(Alot)" />
                   크리에이터 커뮤니티 마켓 어랏(Alot)
                 </div>
                 <div>
-                  <img src="/images/eb/service-item-3.png" alt="JOOB" />
+                  <img src="/images/service-item-3.png" alt="JOOB" />
                   글로벌 재능 매칭 플랫폼 JOOB
                 </div>
               </div>
@@ -714,10 +784,10 @@ function App() {
             <div>
               <span></span>
               <span>model_top</span>
-              <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/eb/contract-icon.png" alt="배경흐려진상태" />
+              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
             </div>
-            <img src="/images/eb/image-sec-2-1.png" alt="헤드셋낀여자" />
+            <img src="/images/image-sec-2-1.png" alt="헤드셋낀여자" />
           </div>
           <div>
             <span>
@@ -734,10 +804,10 @@ function App() {
             <div>
               <span></span>
               <span>elon.M</span>
-              <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/eb/contract-icon.png" alt="배경흐려진상태" />
+              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
             </div>
-            <img src="/images/eb/image-sec-2-2.png" alt="가방멘여자" />
+            <img src="/images/image-sec-2-2.png" alt="가방멘여자" />
           </div>
           <div>
             <span>
@@ -754,11 +824,11 @@ function App() {
             <div>
               <span></span>
               <span>cafe22</span>
-              <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/eb/contract-icon.png" alt="배경흐려진상태" />
+              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
             </div>
             <img
-              src="/images/eb/image-sec-2-3.png"
+              src="/images/image-sec-2-3.png"
               alt="가방들고걷고있는여자"
             />
           </div>
@@ -794,7 +864,7 @@ function App() {
           <p>네트워크를 기반으로</p>
           <p>시작하는 도약.</p>
         </div>
-        <img src="/images/eb/prove2.jpg" alt="하늘" />
+        <img src="/images/prove2.jpg" alt="하늘" />
       </section>
       */}
 
@@ -829,9 +899,9 @@ function App() {
               <div>
                 <div>핀테크 등 B2C 서비스</div>
                 <div>
-                  <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
+                  <img src="/images/expand-icon.png" alt="배경안흐린상태" />
                   <img
-                    src="/images/eb/contract-icon.png"
+                    src="/images/contract-icon.png"
                     alt="배경흐려진상태"
                   />
                 </div>
@@ -857,9 +927,9 @@ function App() {
               <div>
                 <div>월렛 등 B2C 서비스</div>
                 <div>
-                  <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
+                  <img src="/images/expand-icon.png" alt="배경안흐린상태" />
                   <img
-                    src="/images/eb/contract-icon.png"
+                    src="/images/contract-icon.png"
                     alt="배경흐려진상태"
                   />
                 </div>
@@ -886,9 +956,9 @@ function App() {
               <div>
                 <div>Talent Marketplace</div>
                 <div>
-                  <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
+                  <img src="/images/expand-icon.png" alt="배경안흐린상태" />
                   <img
-                    src="/images/eb/contract-icon.png"
+                    src="/images/contract-icon.png"
                     alt="배경흐려진상태"
                   />
                 </div>
@@ -931,7 +1001,7 @@ function App() {
           이렇게 기록하고, 증명하고, <br />
           성장할 수 있어요.
         </div>
-        <img src="/images/eb/creator-sec-bg.jpg" alt="빵들고있는제빵사" />
+        <img src="/images/creator-sec-bg.jpg" alt="빵들고있는제빵사" />
       </section>
       */}
 
@@ -958,10 +1028,10 @@ function App() {
             <div>
               <span></span>
               <span>baker_sora</span>
-              <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/eb/contract-icon.png" alt="배경흐려진상태" />
+              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
             </div>
-            <img src="/images/eb/image-sec-4-1.png" alt="빵들고있는제빵사" />
+            <img src="/images/image-sec-4-1.png" alt="빵들고있는제빵사" />
           </div>
           <div>
             <span>
@@ -980,8 +1050,8 @@ function App() {
             <div>
               <span></span>
               <span>baker_sora</span>
-              <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/eb/contract-icon.png" alt="배경흐려진상태" />
+              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
             </div>
           </div>
           <div>
@@ -1001,8 +1071,8 @@ function App() {
             <div>
               <span></span>
               <span>baker_sora</span>
-              <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/eb/contract-icon.png" alt="배경흐려진상태" />
+              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
             </div>
           </div>
           <div>
@@ -1023,8 +1093,8 @@ function App() {
             <div>
               <span></span>
               <span>baker_sora</span>
-              <img src="/images/eb/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/eb/contract-icon.png" alt="배경흐려진상태" />
+              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
             </div>
           </div>
         </div>
@@ -1068,7 +1138,7 @@ function App() {
           </div>
         </div>
         <div>
-          <img src="/images/eb/ft-logo-hori.png" alt="logo" />
+          <img src="/images/ft-logo-hori.png" alt="logo" />
         </div>
       </footer>
         */}
