@@ -10,10 +10,14 @@ import gsap from "gsap";
 export const EbComponentStyle = styled.div`
   position: relative;
   width: 100%;
-  height: 100dvh;
+  height: 100vh;
   margin: 0;
   color: white;
   font-family: "Noto Sans KR", sans-serif;
+
+  header.black {
+    color: #000;
+  }
 
   header {
     position: fixed;
@@ -40,6 +44,10 @@ export const EbComponentStyle = styled.div`
       transition: filter 0.5s;
     }
 
+    .logo.black {
+      filter: brightness(0) invert(0);
+    }
+
     .nav {
       display: flex;
       align-items: center;
@@ -62,16 +70,15 @@ export const EbComponentStyle = styled.div`
     opacity: 0;
   }
 
-  section {
+  /* section {
     width: 100%;
     height: 100%;
-    max-height: 100dvh;
     background-color: black;
-  }
+  } */
 
   .section1 {
     position: relative;
-    height: 100dvh;
+    height: 100vh;
     overflow: hidden;
 
     .section1-wrap {
@@ -89,7 +96,7 @@ export const EbComponentStyle = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-      max-height: 100dvh;
+      max-height: 100vh;
       z-index: 3;
       overflow: hidden;
     }
@@ -167,7 +174,7 @@ export const EbComponentStyle = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-      max-height: 100dvh;
+      max-height: 100vh;
       z-index: 3;
       overflow: hidden;
     }
@@ -194,7 +201,7 @@ export const EbComponentStyle = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-      max-height: 100dvh;
+      max-height: 100vh;
       z-index: 3;
       overflow: hidden;
     }
@@ -218,13 +225,16 @@ export const EbComponentStyle = styled.div`
       left: 0;
       width: 100%;
       height: 100%;
-      max-height: 100dvh;
+      max-height: 100vh;
       z-index: 3;
       overflow: hidden;
     }
   }
 
   .section3 {
+    height: 100%;
+    min-height: 100vh;
+    /* height: 100vh; */
     padding: 235px 100px 80px;
     color: #000;
     background-color: #fff;
@@ -301,6 +311,44 @@ export const EbComponentStyle = styled.div`
       transform: translate(-50%, -50%);
     }
   }
+
+  .section5 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+    color: #000;
+    background: #fff;
+
+    img {
+      max-width: 100%;
+    }
+
+    .section5-text-wrap {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.28;
+    }
+
+    .section5-img {
+      max-width: 46.4%;
+    }
+
+    .section5-img01,
+    .section5-img03 {
+      margin-left: auto;
+    }
+
+    .section5-img p {
+      margin: 12px 0 0;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .section5-img:not(:last-child) {
+      margin-bottom: 186px;
+    }
+  }
 `;
 
 function App() {
@@ -308,6 +356,7 @@ function App() {
 
   useGSAP(() => {
     var ele = document.getElementById("header");
+    var logo = document.getElementById("logo");
 
     /**
      * nav 관련 scroll 애니메이션 코드
@@ -370,7 +419,6 @@ function App() {
         end: "+=7000",
         scrub: true,
         pin: true,
-        markers: true,
       },
     });
 
@@ -405,6 +453,25 @@ function App() {
       .from(".section2 .section2-text4", { autoAlpha: 0, duration: 20 });
 
     /**
+     * section3 관련 animation 코드
+     */
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section3",
+        start: "10% 10%",
+        end: "100% 10%",
+        onEnter: function () {
+          ele.classList.add("black");
+          logo.classList.add("black");
+        },
+        onLeaveBack: function () {
+          ele.classList.remove("black");
+          logo.classList.remove("black");
+        },
+      },
+    });
+
+    /**
      * section4 관련 animation 코드
      */
     const section4 = gsap.timeline({
@@ -413,11 +480,31 @@ function App() {
         start: "-10% 52%",
         end: "45% 52%",
         scrub: true,
-        markers: true,
       },
     });
 
     section4
+      .addLabel("a")
+      .from(".section4-bg-before", 1, { xPercent: 100, duration: 1 }, "a")
+      .from(".section4-bg-after", { xPercent: -100, duration: 1 }, "a")
+      .to(".section4-text1", { xPercent: -165, duration: 1 }, "a")
+      .to(".section4-text3", { xPercent: 130, duration: 1 }, "a");
+
+    /**
+     * section5 관련 animation 코드
+     */
+    const section5 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section5",
+        start: "top 10%",
+        end: "+=7000",
+        anticipatePin: 1,
+        scrub: true,
+        pin: true,
+      },
+    });
+
+    section5
       .addLabel("a")
       .from(".section4-bg-before", 1, { xPercent: 100, duration: 1 }, "a")
       .from(".section4-bg-after", { xPercent: -100, duration: 1 }, "a")
@@ -428,7 +515,7 @@ function App() {
   return (
     <EbComponentStyle>
       <header id="header">
-        <div className="logo">
+        <div id="logo" className="logo">
           <img src="./images/ebc_logo.svg" alt="로고" />
         </div>
         <div>
@@ -516,7 +603,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="section section2">
+      <section className="section2">
         <div className="section2-bg" />
         <div className="section2-img-wrap">
           <div className="section2-img-inner">
@@ -554,7 +641,7 @@ function App() {
         </p>
       </section>
 
-      <section className="section section3">
+      <section className="section3">
         <div className="section3-text-wrap">
           <p>긱 워커</p>
           <p>개인사업자</p>
@@ -571,10 +658,8 @@ function App() {
       </section>
 
       <section className="section4">
-        <div className="sction4-bg-wrap">
-          <div className="section4-bg-before" />
-          <div className="section4-bg-after" />
-        </div>
+        <div className="section4-bg-before" />
+        <div className="section4-bg-after" />
         <div className="section4-text-wrap">
           <p className="section4-text1">가치를</p>
           <p className="section4-text2">증명하고 싶다면</p>
@@ -582,29 +667,27 @@ function App() {
         </div>
       </section>
 
-      {/*
-      <section>
-        <div>
+      <section className="section5">
+        <div className="section5-text-wrap">
           <p>당신의</p>
           <p>다양한 재능을</p>
           <p>DATA ID에.</p>
         </div>
         <div>
-          <div>
+          <div className="section5-img section5-img01">
             <img src="/images/talent-01.jpg" alt="플라워클래스" />
-            플라워 클래스를 운영하는 정호영 씨도
+            <p>플라워 클래스를 운영하는 정호영 씨도</p>
           </div>
-          <div>
+          <div className="section5-img section5-img02">
             <img src="/images/talent-02.jpg" alt="바리스타" />
-            카페를 운영하는 김은혜 씨도
+            <p>카페를 운영하는 김은혜 씨도</p>
           </div>
-          <div>
+          <div className="section5-img section5-img03">
             <img src="/images/talent-03.jpg" alt="개발자" />
-            프리랜서 개발자 송보름 씨도
+            <p>프리랜서 개발자 송보름 씨도</p>
           </div>
         </div>
       </section>
-     */}
 
       {/*
       <section>
