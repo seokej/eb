@@ -58,6 +58,10 @@ export const EbComponentStyle = styled.div`
         padding: 23px 25px;
       }
     }
+
+    .navLogo.black {
+      stroke: #000;
+    }
   }
 
   .fixed {
@@ -315,7 +319,7 @@ export const EbComponentStyle = styled.div`
   .section5 {
     display: flex;
     justify-content: space-between;
-    padding: 0 100px;
+    margin: 0 100px;
     color: #000;
     background: #fff;
 
@@ -329,24 +333,28 @@ export const EbComponentStyle = styled.div`
       line-height: 1.28;
     }
 
-    .section5-img {
-      max-width: 46.4%;
-    }
+    .section5-desc-wrap {
+      padding: 100vh 0 100vh 50px;
 
-    .section5-img01,
-    .section5-img03 {
-      margin-left: auto;
-    }
+      .section5-img {
+        max-width: 46.4%;
+      }
 
-    .section5-img p {
-      margin: 12px 0 0;
-      font-size: 16px;
-      font-weight: 600;
-      line-height: 1.5;
-    }
+      .section5-img01,
+      .section5-img03 {
+        margin-left: auto;
+      }
 
-    .section5-img:not(:last-child) {
-      margin-bottom: 186px;
+      .section5-img p {
+        margin: 12px 0 0;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+
+      .section5-img:not(:last-child) {
+        margin-bottom: 186px;
+      }
     }
   }
 `;
@@ -357,6 +365,7 @@ function App() {
   useGSAP(() => {
     var ele = document.getElementById("header");
     var logo = document.getElementById("logo");
+    var navLogo = document.getElementById("navLogo");
 
     /**
      * nav 관련 scroll 애니메이션 코드
@@ -463,10 +472,12 @@ function App() {
         onEnter: function () {
           ele.classList.add("black");
           logo.classList.add("black");
+          navLogo.classList.add("black");
         },
         onLeaveBack: function () {
           ele.classList.remove("black");
           logo.classList.remove("black");
+          navLogo.classList.remove("black");
         },
       },
     });
@@ -496,11 +507,10 @@ function App() {
     const section5 = gsap.timeline({
       scrollTrigger: {
         trigger: ".section5",
-        start: "top 10%",
-        end: "+=7000",
-        anticipatePin: 1,
+        start: "top top",
+        end: "100% 100%",
+        pin: ".section5-text-wrap",
         scrub: true,
-        pin: true,
       },
     });
 
@@ -540,6 +550,8 @@ function App() {
                 >
                   <g fill-rule="nonzero" fill="none">
                     <path
+                      id="navLogo"
+                      className="navLogo"
                       stroke="#FFF"
                       stroke-width="2"
                       stroke-linecap="round"
@@ -673,7 +685,7 @@ function App() {
           <p>다양한 재능을</p>
           <p>DATA ID에.</p>
         </div>
-        <div>
+        <div className="section5-desc-wrap">
           <div className="section5-img section5-img01">
             <img src="/images/talent-01.jpg" alt="플라워클래스" />
             <p>플라워 클래스를 운영하는 정호영 씨도</p>
