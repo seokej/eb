@@ -37,6 +37,10 @@ export const EbComponentStyle = styled.div`
     z-index: 4;
     transition: transform 0.3s, color 0.5s;
 
+    @media(max-width: 750px) {
+      padding: 0 21px 0 24px;
+    }
+
     .logo {
       width: 100px;
       height: 100px;
@@ -51,6 +55,10 @@ export const EbComponentStyle = styled.div`
     .nav {
       display: flex;
       align-items: center;
+
+      @media(max-width: 750px) {
+        display: none;
+      }
 
       .nav-link {
         display: flex;
@@ -236,9 +244,7 @@ export const EbComponentStyle = styled.div`
   }
 
   .section3 {
-    height: 100%;
     min-height: 100vh;
-    /* height: 100vh; */
     padding: 235px 100px 80px;
     color: #000;
     background-color: #fff;
@@ -262,9 +268,9 @@ export const EbComponentStyle = styled.div`
 
   .section4 {
     position: relative;
+    padding: 364px 0 369px;
     color: #fff;
-    height: 75vh;
-    background: url(/images/prove.jpg) no-repeat 50% / contain;
+    background: url(/images/prove.jpg) no-repeat 50% / cover;
     overflow: hidden;
 
     .sction4-bg-wrap {
@@ -328,12 +334,19 @@ export const EbComponentStyle = styled.div`
     }
 
     .section5-text-wrap {
-      font-size: 72px;
-      font-weight: 700;
-      line-height: 1.28;
+      position: sticky;
+      display: flex;
+      align-items: center;
+      font-size:73px;
+      line-height: 90px;
+      font-weight: bold;
+      height: 100vh;
     }
 
     .section5-desc-wrap {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
       padding: 100vh 0 100vh 50px;
 
       .section5-img {
@@ -355,6 +368,30 @@ export const EbComponentStyle = styled.div`
       .section5-img:not(:last-child) {
         margin-bottom: 186px;
       }
+    }
+  }
+
+  .section6 {
+    padding-left: 100px;
+    color: #fff;
+    font-size: 72px;
+    font-weight: bold;
+    line-height: 1.28;
+    background: #000;
+
+    img {
+      max-width: 100%;
+    }
+
+    .section6-top {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+    }
+
+    .section6-top-desc-wrap {
+      font-size: 24px;
+      line-height: 1.67;
     }
   }
 `;
@@ -498,8 +535,8 @@ function App() {
       .addLabel("a")
       .from(".section4-bg-before", 1, { xPercent: 100, duration: 1 }, "a")
       .from(".section4-bg-after", { xPercent: -100, duration: 1 }, "a")
-      .to(".section4-text1", { xPercent: -165, duration: 1 }, "a")
-      .to(".section4-text3", { xPercent: 130, duration: 1 }, "a");
+      .to(".section4-text1", { xPercent: -70, duration: 1 }, "a")
+      .to(".section4-text3", { xPercent: 80, duration: 1 }, "a");
 
     /**
      * section5 관련 animation 코드
@@ -515,11 +552,36 @@ function App() {
     });
 
     section5
-      .addLabel("a")
-      .from(".section4-bg-before", 1, { xPercent: 100, duration: 1 }, "a")
-      .from(".section4-bg-after", { xPercent: -100, duration: 1 }, "a")
-      .to(".section4-text1", { xPercent: -165, duration: 1 }, "a")
-      .to(".section4-text3", { xPercent: 130, duration: 1 }, "a");
+      .addLabel("a");
+
+    /**
+     * section6 관련 animation 코드
+     */
+    const section6 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section6",
+        start: "top top",
+        end: "100% 100%",
+        // pin: ".section5-text-wrap",
+        scrub: true,
+      },
+    });
+
+    const possibility = gsap.timeline();
+    let horiWidth1 = $('.hori-area-01').width();
+    possibility
+        .addLabel("a")
+        .to('.sc-possibility .group-hori',{x:-horiWidth1},"a")
+    ScrollTrigger.create({
+      animation: possibility,
+      trigger: ".section6",
+      start: "top top",
+      end: "+=3000",
+      pin: true,
+      markers: false,
+      scrub: true,
+    });
+
   }, []);
 
   return (
@@ -548,14 +610,14 @@ function App() {
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g fill-rule="nonzero" fill="none">
+                  <g fillRule="nonzero" fill="none">
                     <path
                       id="navLogo"
                       className="navLogo"
                       stroke="#FFF"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M4 15h5v5H4zM9 15h5v5H9zM14 15h5v5h-5zM14 5h5v5h-5zM14 10h5v5h-5zM9 10h5v5H9zM4 10h5v5H4z"
                     ></path>
                   </g>
@@ -568,7 +630,7 @@ function App() {
       </header>
       <section id="section1" className="section1">
         <div className="section1-wrap">
-          <div class="section1-bg" />
+          <div className="section1-bg" />
           <video loop autoPlay muted playsInline className="section1-vid">
             {/* ios,safari용 video source */}
             <source
@@ -681,9 +743,10 @@ function App() {
 
       <section className="section5">
         <div className="section5-text-wrap">
-          <p>당신의</p>
-          <p>다양한 재능을</p>
-          <p>DATA ID에.</p>
+          <p>당신의<br/>            
+            다양한 재능을<br/>
+            DATA ID에.
+          </p>
         </div>
         <div className="section5-desc-wrap">
           <div className="section5-img section5-img01">
@@ -700,37 +763,45 @@ function App() {
           </div>
         </div>
       </section>
-
-      {/*
-      <section>
-        <div>
-          <div>
-            <p>불가능을</p>
-            <p>DATA ID로</p>
-            <p>가능하게.</p>
-          </div>
-          <div>
-            <div>
+      
+      <section className="section6">
+        <div className="section6-top">
+          <p>
+            불가능을<br />
+            DATA ID로<br/>
+            가능하게.
+          </p>
+          <ul className="section6-top-desc-wrap">
+            <li>
               <img src="/images/possibility-system.png" alt="블럭" />
-              기축데이터, 금융, <br />
-              사회 전반 시스템 부재
-            </div>
-            <div>
+              <div>
+                기축데이터, 금융, <br />
+                사회 전반 시스템 부재
+              </div>
+            </li>
+            <li>
               <img src="/images/possibility-prove.png" alt="증명서" />
-              개인의 소득 증빙, 재능 <br />
-              증명 필요
-            </div>
-            <div>
+              <div>
+                개인의 소득 증빙, 재능 <br />
+                증명 필요
+              </div>
+            </li>
+            <li>
               <img src="/images/possibility-nft.png" alt="DATAID" />
-              DATA ID 통해 재능 자산 <br />
-              소유권 증명
-            </div>
-            <div>
+              <div>
+                DATA ID 통해 재능 자산 <br />
+                소유권 증명
+              </div>
+            </li>
+            <li>
               <img src="/images/possibility-global.png" alt="네트워크" />
-              커리어 성장, <br />
-              금융 혜택으로 연결
-            </div>
-          </div>
+              <div>
+                커리어 성장, <br />
+                금융 혜택으로 연결
+              </div>
+            </li>
+          </ul>
+
           <div>
             <img src="/images/graphic-cut-pc.png" alt="큐브" />
           </div>
@@ -744,7 +815,7 @@ function App() {
           </p>
         </div>
       </section>
-      */}
+     
 
       {/*
       <section>
