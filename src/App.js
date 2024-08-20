@@ -372,12 +372,15 @@ export const EbComponentStyle = styled.div`
   }
 
   .section6 {
+    position: relative;
+    height: auto;
     padding-left: 100px;
     color: #fff;
     font-size: 72px;
     font-weight: bold;
     line-height: 1.28;
     background: #000;
+    overflow: hidden;
 
     img {
       max-width: 100%;
@@ -385,14 +388,70 @@ export const EbComponentStyle = styled.div`
 
     .section6-top {
       display: flex;
+      align-items: stretch;
+      width: auto;
+      height: 100vh;
+    }
+
+    .section6-top-left {
+      display: flex;
       align-items: center;
-      flex-direction: row;
+      gap: 200px;
+      flex-shrink: 0;
     }
 
     .section6-top-desc-wrap {
+      display: flex;
       font-size: 24px;
       line-height: 1.67;
+
+      li {
+        /* width: 300px; */
+      }
     }
+
+    .section6-top-right-cube {
+      position: relative;
+
+      .section6-top-right-cube-inner  {
+        position: relative;
+        /* width: 506px; */
+        margin: 0 auto;
+      }
+
+      .cube-text {
+        strong {
+          font-size: 24px;
+          line-height: 1.67;
+        }
+    
+        p {
+          font-size: 16px;
+          line-height: 1.63;
+        }
+
+        .cube-text-item {
+          position: absolute;
+        }
+
+        .cube-text-top {
+          top: 9%;
+          /* width: 100%; */
+        }
+
+        .cube-text-left {
+          left: 0;
+          bottom: 26.3%;
+          text-align: center;
+        }
+
+        .cube-text-right {
+          right: 0;
+          bottom: 26.3%;
+        }
+      }
+    }
+
   }
 `;
 
@@ -568,10 +627,13 @@ function App() {
     });
 
     const possibility = gsap.timeline();
-    let horiWidth1 = $('.hori-area-01').width();
+    let div = document.querySelector(".section6-top-left");
+    let eleWidth = div.offsetWidth;
+
     possibility
         .addLabel("a")
-        .to('.sc-possibility .group-hori',{x:-horiWidth1},"a")
+        .to('.section6 .section6-top',{x:-eleWidth},"a")
+    
     ScrollTrigger.create({
       animation: possibility,
       trigger: ".section6",
@@ -765,57 +827,76 @@ function App() {
       </section>
       
       <section className="section6">
-        <div className="section6-top">
-          <p>
-            불가능을<br />
-            DATA ID로<br/>
-            가능하게.
-          </p>
-          <ul className="section6-top-desc-wrap">
-            <li>
-              <img src="/images/possibility-system.png" alt="블럭" />
-              <div>
-                기축데이터, 금융, <br />
-                사회 전반 시스템 부재
-              </div>
-            </li>
-            <li>
-              <img src="/images/possibility-prove.png" alt="증명서" />
-              <div>
-                개인의 소득 증빙, 재능 <br />
-                증명 필요
-              </div>
-            </li>
-            <li>
-              <img src="/images/possibility-nft.png" alt="DATAID" />
-              <div>
-                DATA ID 통해 재능 자산 <br />
-                소유권 증명
-              </div>
-            </li>
-            <li>
-              <img src="/images/possibility-global.png" alt="네트워크" />
-              <div>
-                커리어 성장, <br />
-                금융 혜택으로 연결
-              </div>
-            </li>
-          </ul>
+        <div id="section6-top" className="section6-top">
+          <div className="section6-top-left">
+            <p>
+              불가능을<br />
+              DATA ID로<br/>
+              가능하게.
+            </p>
+            <ul className="section6-top-desc-wrap">
+              <li>
+                <img src="/images/possibility-system.png" alt="블럭" />
+                <div>
+                  기축데이터, 금융, <br />
+                  사회 전반 시스템 부재
+                </div>
+              </li>
+              <li>
+                <img src="/images/possibility-prove.png" alt="증명서" />
+                <div>
+                  개인의 소득 증빙, 재능 <br />
+                  증명 필요
+                </div>
+              </li>
+              <li>
+                <img src="/images/possibility-nft.png" alt="DATAID" />
+                <div>
+                  DATA ID 통해 재능 자산 <br />
+                  소유권 증명
+                </div>
+              </li>
+              <li>
+                <img src="/images/possibility-global.png" alt="네트워크" />
+                <div>
+                  커리어 성장, <br />
+                  금융 혜택으로 연결
+                </div>
+              </li>
+            </ul>
+          </div>
 
-          <div>
-            <img src="/images/graphic-cut-pc.png" alt="큐브" />
+          <div className="section6-top-right-cube">
+            <div className="section6-top-right-cube-inner">
+              <img src="/images/graphic-cut-pc.png" alt="큐브" />
+              
+              <div className="cube-text">
+                <div className="cube-text-item cube-text-top">
+                  <strong>증명</strong>
+                  <p>DATA ID</p>
+                </div>
+                <div className="cube-text-item cube-text-left">
+                  <strong>기록</strong>
+                  <p>기축데이터</p>
+                </div>
+                <div className="cube-text-item cube-text-right">
+                  <strong>성장</strong>
+                  <p>D커리어, 금융</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
+
+        {/* <div>
           <p>DATA ID는 나만의 데이터 아이덴티티입니다</p>
           <p>
             이용자 개인이 데이터 소유권을 갖고 언제 어디서든 나를 증명하는
             데이터 패스포트이자 다양한 서비스 이용을 가능케하는 패스워드리스
             접속 방식입니다.
           </p>
-        </div>
+        </div> */}
       </section>
-     
 
       {/*
       <section>
