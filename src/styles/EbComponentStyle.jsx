@@ -462,20 +462,27 @@ const EbComponentStyle = styled.div`
   }
 
   .section7 {
-    margin: 0 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: 40px 100px 0;
     
     .section7-title {
       font-size: 72px;
       font-weight: bold;
-      line-height: 1.28;
+      line-height: 1.25;
+      align-self: flex-start;
     }
 
     .section7-desc {
-      display: flex;
-      justify-content: end;
+      align-self: flex-end;
       font-size: 24px;
       font-weight: bold;
-      line-height: 1.67;
+      line-height: 1.6;
     }
   }
 
@@ -485,7 +492,7 @@ const EbComponentStyle = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
     width: 100%;
     height: 175px;
-    margin-top: 80px;
+    margin-top: 40px;
   
     .banner-text {
       position: absolute;

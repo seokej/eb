@@ -483,11 +483,11 @@ function App() {
       
       <section className="section7">
         <div className="section7-title">
-          <p>쉽고 간편하게</p>
-          <p>DATA ID로 정보를</p>
-          <p>보관하고</p>
-          <p>언제 어디서든</p>
-          <p>증명해보세요.</p>
+          <p>쉽고 간편하게<br/>
+          DATA ID로 정보를<br/>
+          보관하고<br/>
+          언제 어디서든<br/>
+          증명해보세요.</p>
         </div>
 
         <div className="section7-desc">
