@@ -183,12 +183,12 @@ function App() {
 
     const section6 = gsap.timeline();
 
-    let div = document.querySelector(".section6-top-left");
-    let eleWidth = div.offsetWidth + 100;
+    let section6Div = document.querySelector(".section6-top-left");
+    let section6EleWidth = section6Div.offsetWidth + 100;
 
     section6
       .addLabel("a")
-      .to('.section6-top', { x: -eleWidth }, "a");
+      .to('.section6-top', { x: -section6EleWidth }, "a");
     
     ScrollTrigger.create({
       animation: section6,
@@ -203,20 +203,55 @@ function App() {
     /**
      * banner 관련 animation 코드
     */
-    // const banner = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: ".banner",
-    //     start: "0% 52%",
-    //     end: "45% 52%",
-    //     scrub: true,
-    //   },
-    // });
+    const banner = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".banner",
+        start:"-10% 85%",
+        end: "200% 85%",
+        markers:false,
+        scrub:true,
+      },
+    });
 
-    // banner
-    //   .addLabel("a")
-    //   .from(".section4-bg-after", { xPercent: -100, duration: 1 }, "a")
-    //   .to(".section4-text3", { xPercent: 80, duration: 1 }, "a");
+    banner
+      .addLabel("a")
+      .from('.banner-color-01', { x: -200, duration: 1 }, "a")
+      .from('.banner-color-02', { x: -300, duration: 1 }, "a")
+      .from(".banner-color-03", { x: 200, duration: 1 }, "a")
+      .addLabel("b")
+      .fromTo(".banner-text", { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, "b")
+      .fromTo(".banner-text-bg", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, "b");
 
+    /**
+     * section8 관련 animation 코드
+    */
+    const section8 = gsap.timeline();
+
+    let section8Div = document.querySelector(".section8-horizon");
+    let section8EleWidth = section8Div.offsetWidth;
+
+    section8
+      .addLabel("a")
+      .to(".section8-inner",{x:-515,duration:3},"a")
+      // .to('.section8-inner', { x: -section8EleWidth }, "a")
+      .addLabel("b")
+      .to(".section8-horizon",{x:-section8EleWidth + 400,duration:3},"b")
+      .to(".section8-card-item:nth-child(3)",{x:440,duration:3},"b")
+      .to(".section8-card-item:nth-child(2)",{x:880,duration:3},"b")
+      .to(".section8-card-item:nth-child(1)",{x:1320,duration:3},"b")
+      .addLabel("c")
+      .fromTo('.section8-card-unlock', { autoAlpha: 1 }, { autoAlpha: 0, duration: 1 }, "c")
+      .fromTo('.section8-card-lock', { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, "c");
+    
+    ScrollTrigger.create({
+      animation: section8,
+      trigger:".section8",
+      start: "top top",
+      end:"+=9000",
+      pin:true,
+      markers:false,
+      scrub:true,
+    })
   }, []);
 
   return (
@@ -378,10 +413,10 @@ function App() {
 
       <section id="section5" className="section5">
         <div className="section5-text-wrap">
-          <p>당신의<br/>            
+          <h3>당신의<br/>            
             다양한 재능을<br/>
             DATA ID에.
-          </p>
+          </h3>
         </div>
         <div className="section5-desc-wrap">
           <div className="section5-img section5-img01">
@@ -401,84 +436,84 @@ function App() {
 
       <section className="section6">
         <div className="section6-top">
-            <div className="section6-top-left">
-              <h3 className="title">
-                  불가능을<br/>
-                  DATA ID로<br/>
-                  가능하게.
-              </h3>
-              <ul className="section6-top-desc-wrap">
-                <li className="section6-top-desc-item">
-                    <div className="icon-box">
-                        <img src="/images/possibility-system.png" alt="" />
-                    </div>
-                    <div className="text-box">
-                        <p>
-                            기축데이터, 금융,<br/>
-                            사회 전반 시스템 부재
-                        </p>
-                    </div>
-                </li>
-                <li className="section6-top-desc-item">
-                    <div className="icon-box">
-                        <img src="/images/possibility-prove.png" alt="" />
-                    </div>
-                    <div className="text-box">
-                        <p>
-                            개인의 소득 증빙, 재능<br/>
-                            증명 필요
-                        </p>
-                    </div>
-                </li>
-                <li className="section6-top-desc-item">
-                    <div className="icon-box">
-                        <img src="/images/possibility-nft.png" alt="" />
-                    </div>
-                    <div className="text-box">
-                        <p>
-                            DATA ID 통해 재능 자산<br/>
-                            소유권 증명
-                        </p>
-                    </div>
-                </li>
-                <li className="section6-top-desc-item">
-                    <div className="icon-box">
-                        <img src="/images/possibility-global.png" alt="" />
-                    </div>
-                    <div className="text-box">
-                        <p>
-                            커리어 성장,<br/>
-                            금융 혜택으로 연결
-                        </p>
-                    </div>
-                </li>
-              </ul>
-            </div>
-            <div className="section6-top-right">
-              <img src="/images/graphic-cut-pc.png" alt="DATA ID 모형" />
-              <div className="model-text">
-                <div className="top-box">
-                  <strong>증명</strong>
-                  <p>DATA ID</p>
+          <div className="section6-top-left">
+            <h3 className="title">
+                불가능을<br/>
+                DATA ID로<br/>
+                가능하게.
+            </h3>
+            <ul className="section6-top-desc-wrap">
+              <li className="section6-top-desc-item">
+                  <div className="icon-box">
+                      <img src="/images/possibility-system.png" alt="" />
+                  </div>
+                  <div className="text-box">
+                      <p>
+                          기축데이터, 금융,<br/>
+                          사회 전반 시스템 부재
+                      </p>
+                  </div>
+              </li>
+              <li className="section6-top-desc-item">
+                  <div className="icon-box">
+                      <img src="/images/possibility-prove.png" alt="" />
+                  </div>
+                  <div className="text-box">
+                      <p>
+                          개인의 소득 증빙, 재능<br/>
+                          증명 필요
+                      </p>
+                  </div>
+              </li>
+              <li className="section6-top-desc-item">
+                  <div className="icon-box">
+                      <img src="/images/possibility-nft.png" alt="" />
+                  </div>
+                  <div className="text-box">
+                      <p>
+                          DATA ID 통해 재능 자산<br/>
+                          소유권 증명
+                      </p>
+                  </div>
+              </li>
+              <li className="section6-top-desc-item">
+                  <div className="icon-box">
+                      <img src="/images/possibility-global.png" alt="" />
+                  </div>
+                  <div className="text-box">
+                      <p>
+                          커리어 성장,<br/>
+                          금융 혜택으로 연결
+                      </p>
+                  </div>
+              </li>
+            </ul>
+          </div>
+          <div className="section6-top-right">
+            <img src="/images/graphic-cut-pc.png" alt="DATA ID 모형" />
+            <div className="model-text">
+              <div className="top-box">
+                <strong>증명</strong>
+                <p>DATA ID</p>
+              </div>
+              <div className="bottom-box">
+                <div className="left">
+                  <strong>기록</strong>
+                  <p>기축데이터</p>
                 </div>
-                <div className="bottom-box">
-                  <div className="left">
-                    <strong>기록</strong>
-                    <p>기축데이터</p>
-                  </div>
-                  <div className="right">
-                    <strong>성장</strong>
-                    <p>D커리어, 금융</p>
-                  </div>
+                <div className="right">
+                  <strong>성장</strong>
+                  <p>D커리어, 금융</p>
                 </div>
               </div>
             </div>
+          </div>
         </div>
         
-          <p className="section6-bottom">
-              DATA ID는 나만의 데이터 아이덴티티입니다<br/>
-              이용자 개인이 데이터 소유권을 갖고 언제 어디서든 나를 증명하는 데이터 패스포트이자 다양한 서비스 이용을 가능케하는 패스워드리스 접속 방식입니다.
-          </p>
+        <h3 className="section6-bottom">
+            DATA ID는 나만의 데이터 아이덴티티입니다<br/>
+            이용자 개인이 데이터 소유권을 갖고 언제 어디서든 나를 증명하는 데이터 패스포트이자 다양한 서비스 이용을 가능케하는 패스워드리스 접속 방식입니다.
+        </h3>
       </section>
       
       <section className="section7">
@@ -499,6 +534,7 @@ function App() {
       </section>
 
       <section className="banner">
+        <div className="banner-text-bg"/>
         <div className="banner-text">
           DATA ID는 당신을 기록하고 증명하며, 당신의 성장을 도울 수 있어요.
         </div>
@@ -506,20 +542,131 @@ function App() {
         <div className="banner-color-02"/>
         <div className="banner-color-03"/>
       </section>
+      
+      <section className="section8">
+        <div className="section8-inner">
+          <div className="section8-horizon">
+            <div className="section8-title">
+              <p>안전하고<br />
+              대체불가능한<br />
+              DATA ID.</p>
+            </div>
 
-      {/*
-      <section>
-        <div>
-          <div>
-            <p>안전하고</p>
-            <p>대체불가능한</p>
-            <p>DATA ID.</p>
+            <ul className="section8-card-wrap">
+              <li className="section8-card-item">
+                <div className="section8-card-item-title">
+                  <span>CREATOR</span>
+                  <span className="section8-card-item-star">****</span>
+                </div>
+                <img src="/images/card-code-img-1.png" alt="code" />
+              </li>
+              <li className="section8-card-item">
+                <div className="section8-card-item-title">
+                  <span>
+                    GIG
+                    <br />
+                    WORKER
+                  </span>
+                  <span className="section8-card-item-star">****</span>
+                </div>
+                <img src="/images/card-code-img-2.png" alt="code" />
+              </li>
+              <li className="section8-card-item">
+                <div className="section8-card-item-title">
+                  <span>
+                    SELF
+                    <br />
+                    EMPLOYED
+                  </span>
+                  <span className="section8-card-item-star">****</span>
+                </div>
+                <img src="/images/card-code-img-3.png" alt="code" />
+              </li>
+              <li className="section8-card-item">
+                <div className="section8-card-lock-img-wrap">
+                  <img className="section8-card-lock-img section8-card-unlock" src="/images/lock-icon.png" alt="lock" />
+                  <img className="section8-card-lock-img section8-card-lock" src="/images/unlock-icon.png" alt="unlock" />
+                  <div className="section8-card-text">DATA ID</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* <div>
+            <div>
+              <p>더 나은 일거리와 재능 거래,</p>
+              <p>금융 서비스 이용까지.</p>
+              <p>모든 게 가능해져요.</p>
+            </div>
+            <div>
+              DATA ID는 또 다른 기회와 가치를 연결합니다. DATA ID를 통해 나에게
+              <br />
+              맞는 일을 쉽고 빠르게 찾을 수 있고, 금융 서비스 이용이 가능해집니다.
+              <br />
+              창작물의 권리를 지키고, 그 재능을 판매해 수익을 나누는 선순환의
+              구조도
+              <br />
+              만들 수 있습니다.
+            </div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    TALENT
+                    <br />
+                    MARKETPLACE
+                  </div>
+                  <div>DATA ID 기반 지역 일거리 매칭 서비스</div>
+                </div>
+                <div>
+                  <div>GIG FINANCE</div>
+                  <div>긱 이코노미 최적화 디지털 금융 솔루션</div>
+                </div>
+                <div>
+                  <div>
+                    TALENT
+                    <br />
+                    ASSETIZATION
+                  </div>
+                  <div>크리에이터 재능 자산화 및 가치 창출</div>
+                </div>
+              </div>
+
+              <div>
+                <div>운영중인 서비스</div>
+
+                <div>
+                  <div>
+                    <img src="/images/service-item-1.png" alt="요긱(Yogig)" />
+                    일거리 매칭 서비스 요긱(Yogig)
+                  </div>
+                  <div>
+                    <img src="/images/service-item-2.png" alt="어랏(Alot)" />
+                    크리에이터 커뮤니티 마켓 어랏(Alot)
+                  </div>
+                  <div>
+                    <img src="/images/service-item-3.png" alt="JOOB" />
+                    글로벌 재능 매칭 플랫폼 JOOB
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div>
             <div>
               <span>CREATOR</span>
               <span>****</span>
-              <img src="/images/card-code-img-1.png" alt="code" />
+              <div>
+                크리에이터들이 만들어 낸 다양한 창작물과 재능을 <br />
+                자산화, 토큰화 할 수 있는 기반을 만들어요.
+              </div>
+              <div>
+                <span></span>
+                <span>model_top</span>
+                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
+              </div>
+              <img src="/images/image-sec-2-1.png" alt="헤드셋낀여자" />
             </div>
             <div>
               <span>
@@ -528,7 +675,18 @@ function App() {
                 WORKER
               </span>
               <span>****</span>
-              <img src="/images/card-code-img-2.png" alt="code" />
+              <div>
+                블록체인 기반의 거래 구조 덕분에 긱 워커의 <br />
+                재능과 경력, 평판을 투명하게 거래하고 흩어진 <br />
+                이력을 관리할 수 있어요.
+              </div>
+              <div>
+                <span></span>
+                <span>elon.M</span>
+                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
+              </div>
+              <img src="/images/image-sec-2-2.png" alt="가방멘여자" />
             </div>
             <div>
               <span>
@@ -537,143 +695,29 @@ function App() {
                 EMPLOYED
               </span>
               <span>****</span>
-              <img src="/images/card-code-img-3.png" alt="code" />
-            </div>
-            <div>
-              <img src="/images/unlock-icon.png" alt="unlock" />
-              <img src="/images/lock-icon.png" alt="lock" />
-            </div>
-            <div>
-              <span>DATA ID</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div>
-            <p>더 나은 일거리와 재능 거래,</p>
-            <p>금융 서비스 이용까지.</p>
-            <p>모든 게 가능해져요.</p>
-          </div>
-          <div>
-            DATA ID는 또 다른 기회와 가치를 연결합니다. DATA ID를 통해 나에게
-            <br />
-            맞는 일을 쉽고 빠르게 찾을 수 있고, 금융 서비스 이용이 가능해집니다.
-            <br />
-            창작물의 권리를 지키고, 그 재능을 판매해 수익을 나누는 선순환의
-            구조도
-            <br />
-            만들 수 있습니다.
-          </div>
-          <div>
-            <div>
               <div>
-                <div>
-                  TALENT
-                  <br />
-                  MARKETPLACE
-                </div>
-                <div>DATA ID 기반 지역 일거리 매칭 서비스</div>
+                개인사업자의 소득과 거래 이력, 경험과 전문성을 <br />
+                쉽게 증명할 수 있어서 금융 상품을 이용하기도 더 <br />
+                쉬워져요.
               </div>
               <div>
-                <div>GIG FINANCE</div>
-                <div>긱 이코노미 최적화 디지털 금융 솔루션</div>
+                <span></span>
+                <span>cafe22</span>
+                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
               </div>
-              <div>
-                <div>
-                  TALENT
-                  <br />
-                  ASSETIZATION
-                </div>
-                <div>크리에이터 재능 자산화 및 가치 창출</div>
-              </div>
-            </div>
-
-            <div>
-              <div>운영중인 서비스</div>
-
-              <div>
-                <div>
-                  <img src="/images/service-item-1.png" alt="요긱(Yogig)" />
-                  일거리 매칭 서비스 요긱(Yogig)
-                </div>
-                <div>
-                  <img src="/images/service-item-2.png" alt="어랏(Alot)" />
-                  크리에이터 커뮤니티 마켓 어랏(Alot)
-                </div>
-                <div>
-                  <img src="/images/service-item-3.png" alt="JOOB" />
-                  글로벌 재능 매칭 플랫폼 JOOB
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div>
-            <span>CREATOR</span>
-            <span>****</span>
-            <div>
-              크리에이터들이 만들어 낸 다양한 창작물과 재능을 <br />
-              자산화, 토큰화 할 수 있는 기반을 만들어요.
+              <img
+                src="/images/image-sec-2-3.png"
+                alt="가방들고걷고있는여자"
+              />
             </div>
             <div>
-              <span></span>
-              <span>model_top</span>
-              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
+              <p>누구든</p>
+              <p>무엇이든</p>
             </div>
-            <img src="/images/image-sec-2-1.png" alt="헤드셋낀여자" />
-          </div>
-          <div>
-            <span>
-              GIG
-              <br />
-              WORKER
-            </span>
-            <span>****</span>
-            <div>
-              블록체인 기반의 거래 구조 덕분에 긱 워커의 <br />
-              재능과 경력, 평판을 투명하게 거래하고 흩어진 <br />
-              이력을 관리할 수 있어요.
-            </div>
-            <div>
-              <span></span>
-              <span>elon.M</span>
-              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
-            </div>
-            <img src="/images/image-sec-2-2.png" alt="가방멘여자" />
-          </div>
-          <div>
-            <span>
-              SELF
-              <br />
-              EMPLOYED
-            </span>
-            <span>****</span>
-            <div>
-              개인사업자의 소득과 거래 이력, 경험과 전문성을 <br />
-              쉽게 증명할 수 있어서 금융 상품을 이용하기도 더 <br />
-              쉬워져요.
-            </div>
-            <div>
-              <span></span>
-              <span>cafe22</span>
-              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
-            </div>
-            <img
-              src="/images/image-sec-2-3.png"
-              alt="가방들고걷고있는여자"
-            />
-          </div>
-          <div>
-            <p>누구든</p>
-            <p>무엇이든</p>
-          </div>
+          </div> */}
         </div>
       </section>
-      */}
 
       {/*
       <section>
