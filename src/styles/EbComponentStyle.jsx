@@ -540,11 +540,13 @@ const EbComponentStyle = styled.div`
   }
 
   .section8 {
+    position: relative;
     display: flex;
     align-items: center;
     height: 100vh;
     padding: 0 100px;
     margin: 0 0 500px;
+    overflow: hidden;
 
     .section8-horizon {
       display: flex;
@@ -559,6 +561,7 @@ const EbComponentStyle = styled.div`
 
       .section8-card-wrap {
         display: flex;
+        align-items: flex-start;
 
         .section8-card-item:last-child {
           z-index: 1;
@@ -580,22 +583,46 @@ const EbComponentStyle = styled.div`
             padding-top: 56px;
             padding-right: 50px;
           }
+        }
+        
+        .section8-card-lock-img-wrap {
+          position: relative;
+          width: 400px;
+          height: 540px;
+          margin-right: 0;
+          padding: 0;
+          flex-shrink: 0;
 
-          .section8-card-lock-img-wrap {
+          .section8-card-lock-img-inner {
             position: relative;
+            width: 100%;
             height: 100%;
+            color: #fff;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            background-image: linear-gradient(#000, #000), linear-gradient(315deg, #e657af, #0049ff, #43cf2e);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            overflow: hidden;
 
-            .section8-card-lock-img {
+            .section8-card-lock-wrap {
               position: absolute;
-              padding: 0;
               top: 50%;
               left: 50%;
-              width: 150px;
               transform: translate(-50%, -50%);
             }
 
+            .section8-card-lock-img {
+              width: 150px;
+            }
+
             .section8-card-text {
-              display: none;
+              font-size: 40px;
+              font-weight: bold;
+              color: transparent;
+              background: linear-gradient(90deg,#43cf2e,#0049ff,#e657af);
+              background-clip: text;
+              -webkit-background-clip: text;
             }
           }
         }
@@ -612,11 +639,157 @@ const EbComponentStyle = styled.div`
             right: 0;
             top: 12px;
             font-size: 30px;
+            font-weight: 400;
+            font-family: 'noto sans', sans-serif;
             line-height: .67;
-            color: #fff;
             text-align: right;
-            font-family: Archivo;
           }
+        }
+      }
+    }
+
+    .section8-card-item-name {
+      font-size: 24px;
+      line-height: 1.67;
+    }
+    
+    .section8-card-item-icon {
+      display: block;
+      width: 40px;
+      height: 40px;
+    }
+
+    .icon-contract {
+      /* display: none; */
+    }
+
+    .section8-vertical {
+      position: absolute;
+      bottom: 0; 
+      left: 0;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      margin-left: 330px;
+      padding: 200px 100px 0px 505px;
+
+      .section8-vertical-title {
+        font-size: 72px;
+        font-weight: bold;
+        line-height: 1.28;
+      }
+
+      .section8-vertical-desc {
+        margin-top: 34px;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1.67;
+      }
+
+      .section8-service-wrap {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .section8-vertical-card-wrap {
+        display: flex;
+        align-items: center;
+
+        .section8-vertical-card-item {
+          position: relative;
+          width: 400px;
+          height: 540px;
+          padding: 34px;
+          margin-right: 40px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          flex-shrink: 0;
+          color: #fff;
+          border-radius: 20px;
+          background-blend-mode: multiply;
+          background-color: hsla(0, 0%, 42%, .3);
+          transform: translateY(-50%);
+          overflow: hidden; 
+          
+          .section8-vertical-card-item-head {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            min-height: 110px;
+            font-size: 50px;
+            font-weight: bold;
+            line-height: 1;
+
+            .section8-vertical-card-item-star {
+              position: absolute;
+              right: 0;
+              top: 12px;
+              font-size: 30px;
+              font-weight: 400;
+              font-family: 'noto sans', sans-serif;
+              line-height: .67;
+              text-align: right;
+            }
+          }
+
+          .section8-vertical-card-item-desc {
+            position: relative;
+            padding-top: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.63;
+            color: #fff;
+          }
+
+          .section8-vertical-card-item-bottom {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .section8-vertical-card-item-profile {
+              display: flex;
+              align-items: center;
+              gap: 9px;
+            }
+
+            .section8-vertical-card-item-circle {
+              display: block;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background-color: #ff009d;
+            }
+
+            .section8-vertical-card-item-name {
+              font-weight: bold;
+            }
+          }
+        }
+
+        .section8-vertical-card-item:nth-child(1) .section8-vertical-card-bg {
+          background: url(/images/image-sec-2-1.png) no-repeat top/cover;
+        }
+
+        .section8-vertical-card-item:nth-child(2) .section8-vertical-card-bg {
+          background: url(/images/image-sec-2-2.png) no-repeat top/cover;
+        }
+
+        .section8-vertical-card-item:nth-child(3) .section8-vertical-card-bg {
+          background: url(/images/image-sec-2-3.png) no-repeat top/cover;
+        }
+
+        .section8-vertical-card-bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          filter: blur(40px);
+          transition: all .5s;
+          z-index: -1;
         }
       }
     }
