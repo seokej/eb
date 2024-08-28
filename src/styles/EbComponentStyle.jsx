@@ -551,7 +551,7 @@ const EbComponentStyle = styled.div`
     .section8-horizon {
       display: flex;
       align-items: center;
-      column-gap: 180px;
+      column-gap: 190px;
 
       .section8-title {
         font-size: 72px;
@@ -568,6 +568,9 @@ const EbComponentStyle = styled.div`
         }
 
         .section8-card-item {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
           width: 400px;
           height: 540px;
           margin-right: 40px;
@@ -577,10 +580,9 @@ const EbComponentStyle = styled.div`
           border: solid 2px #fff;
           background-color: #000;
 
-          img {
+          > img {
             max-width: 100%;
             height: auto;
-            padding-top: 56px;
             padding-right: 50px;
           }
         }
@@ -648,19 +650,25 @@ const EbComponentStyle = styled.div`
       }
     }
 
-    .section8-card-item-name {
-      font-size: 24px;
-      line-height: 1.67;
-    }
-    
-    .section8-card-item-icon {
-      display: block;
-      width: 40px;
-      height: 40px;
-    }
+    .section8-card-item-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-    .icon-contract {
-      /* display: none; */
+      .section8-card-item-name {
+        font-size: 24px;
+        line-height: 1.67;
+      }
+      
+      .section8-card-item-icon {
+        display: block;
+        width: 40px;
+        height: 40px;
+      }
+
+      .icon-contract {
+        /* display: none; */
+      }
     }
 
     .section8-vertical {
@@ -668,130 +676,203 @@ const EbComponentStyle = styled.div`
       bottom: 0; 
       left: 0;
       display: flex;
-      justify-content: center;
       flex-direction: column;
       width: 100%;
-      margin-left: 330px;
-      padding: 200px 100px 0px 505px;
-
-      .section8-vertical-title {
-        font-size: 72px;
-        font-weight: bold;
-        line-height: 1.28;
-      }
-
-      .section8-vertical-desc {
-        margin-top: 34px;
-        font-size: 24px;
-        font-weight: bold;
-        line-height: 1.67;
-      }
-
-      .section8-service-wrap {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .section8-vertical-card-wrap {
+      padding: 0px 100px;
+      
+      .section8-vertical-inner {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        margin-left: 400px;
+        padding-left: 207px;
+        word-break: keep-all;
 
-        .section8-vertical-card-item {
-          position: relative;
-          width: 400px;
-          height: 540px;
-          padding: 34px;
-          margin-right: 40px;
+        .section8-vertical-title {
+          font-size: 72px;
+          font-weight: bold;
+          line-height: 1.28;
+        }
+
+        .section8-vertical-desc {
+          margin-top: 34px;
+          font-size: 24px;
+          font-weight: bold;
+          line-height: 1.67;
+        }
+
+        .section8-vertical-info-wrap { 
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
-          flex-shrink: 0;
-          color: #fff;
-          border-radius: 20px;
-          background-blend-mode: multiply;
-          background-color: hsla(0, 0%, 42%, .3);
-          transform: translateY(-50%);
-          overflow: hidden; 
-          
-          .section8-vertical-card-item-head {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            min-height: 110px;
-            font-size: 50px;
-            font-weight: bold;
-            line-height: 1;
+          gap: 50px;
+          margin: 80px 0 100px;
 
-            .section8-vertical-card-item-star {
-              position: absolute;
-              right: 0;
-              top: 12px;
-              font-size: 30px;
-              font-weight: 400;
-              font-family: 'noto sans', sans-serif;
-              line-height: .67;
-              text-align: right;
-            }
-          }
-
-          .section8-vertical-card-item-desc {
-            position: relative;
-            padding-top: 40px;
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 1.63;
-            color: #fff;
-          }
-
-          .section8-vertical-card-item-bottom {
-            position: relative;
+          .section8-vertical-info {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 40px;
 
-            .section8-vertical-card-item-profile {
+
+            .section8-vertical-info-box {
+              position: relative;
               display: flex;
               align-items: center;
-              gap: 9px;
-            }
+              justify-content: center;
+              width: 350px;
+              height: 200px;
+              color: #fff;
+              border-radius: 20px;
+              border: 2px solid transparent;
+              background-image: linear-gradient(#000, #000), linear-gradient(315deg, #e657af, #0049ff, #43cf2e);
+              background-origin: border-box;
+              background-clip: content-box, border-box;
+              overflow: hidden;
 
-            .section8-vertical-card-item-circle {
-              display: block;
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-              background-color: #ff009d;
+              .section8-vertical-info-box-text {
+                font-size: 28px;
+                line-height: 1.43;
+                font-weight: bold;
+                text-align: center;
+                background: linear-gradient(90deg, #43cf2e, #0049ff, #e657af);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
             }
-
-            .section8-vertical-card-item-name {
+            
+            .section8-vertical-info-desc {
+              font-size: 24px;
               font-weight: bold;
+              line-height: 1.67;
             }
           }
         }
 
-        .section8-vertical-card-item:nth-child(1) .section8-vertical-card-bg {
-          background: url(/images/image-sec-2-1.png) no-repeat top/cover;
-        }
+      .section8-service-wrap {
 
-        .section8-vertical-card-item:nth-child(2) .section8-vertical-card-bg {
-          background: url(/images/image-sec-2-2.png) no-repeat top/cover;
-        }
 
-        .section8-vertical-card-item:nth-child(3) .section8-vertical-card-bg {
-          background: url(/images/image-sec-2-3.png) no-repeat top/cover;
-        }
+          .section8-service-title {
+            font-size: 60px;
+            font-weight: bold;
+            line-height: 1;
+          }
 
-        .section8-vertical-card-bg {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          filter: blur(40px);
-          transition: all .5s;
-          z-index: -1;
+          .section8-service-inner {
+            display: flex;
+            flex: 1;
+            flex-basis: 300px;
+            /* display: grid;
+            grid-template-columns: repeat(3, minmax(0, 300px)); */
+            margin-top: 80px;
+
+            img {
+              max-width: 100%;
+              height: auto;
+            }
+          }
+      }
+        
+
+        .section8-vertical-card-wrap {
+          display: flex;
+          align-items: center;
+
+          .section8-vertical-card-item {
+            position: relative;
+            width: 400px;
+            height: 540px;
+            padding: 34px;
+            margin-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-shrink: 0;
+            color: #fff;
+            border-radius: 20px;
+            background-blend-mode: multiply;
+            background-color: hsla(0, 0%, 42%, .3);
+            transform: translateY(-50%);
+            overflow: hidden; 
+            
+            .section8-vertical-card-item-head {
+              position: relative;
+              display: flex;
+              justify-content: space-between;
+              min-height: 110px;
+              font-size: 50px;
+              font-weight: bold;
+              line-height: 1;
+
+              .section8-vertical-card-item-star {
+                position: absolute;
+                right: 0;
+                top: 12px;
+                font-size: 30px;
+                font-weight: 400;
+                font-family: 'noto sans', sans-serif;
+                line-height: .67;
+                text-align: right;
+              }
+            }
+
+            .section8-vertical-card-item-desc {
+              position: relative;
+              padding-top: 40px;
+              font-size: 16px;
+              font-weight: bold;
+              line-height: 1.63;
+              color: #fff;
+            }
+
+            .section8-vertical-card-item-bottom {
+              position: relative;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .section8-vertical-card-item-profile {
+                display: flex;
+                align-items: center;
+                gap: 9px;
+              }
+
+              .section8-vertical-card-item-circle {
+                display: block;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #ff009d;
+              }
+
+              .section8-vertical-card-item-name {
+                font-weight: bold;
+              }
+            }
+          }
+
+          .section8-vertical-card-item:nth-child(1) .section8-vertical-card-bg {
+            background: url(/images/image-sec-2-1.png) no-repeat top/cover;
+          }
+
+          .section8-vertical-card-item:nth-child(2) .section8-vertical-card-bg {
+            background: url(/images/image-sec-2-2.png) no-repeat top/cover;
+          }
+
+          .section8-vertical-card-item:nth-child(3) .section8-vertical-card-bg {
+            background: url(/images/image-sec-2-3.png) no-repeat top/cover;
+          }
+
+          .section8-vertical-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(40px);
+            transition: all .5s;
+            z-index: -1;
+          }
         }
       }
+
     }
   }
 `;
