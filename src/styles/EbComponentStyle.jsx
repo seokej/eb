@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const EbComponentStyle = styled.div`
   position: relative;
   margin: 0;
   overflow-x: hidden;
-  
+
   header {
     position: fixed;
     top: 0;
@@ -22,7 +22,7 @@ const EbComponentStyle = styled.div`
     z-index: 4;
     transition: transform 0.3s, color 0.5s;
 
-    @media(max-width: 750px) {
+    @media (max-width: 750px) {
       padding: 0 21px 0 24px;
     }
 
@@ -36,7 +36,7 @@ const EbComponentStyle = styled.div`
       display: flex;
       align-items: center;
 
-      @media(max-width: 750px) {
+      @media (max-width: 750px) {
         display: none;
       }
 
@@ -216,7 +216,7 @@ const EbComponentStyle = styled.div`
   .section3 {
     min-height: 100vh;
     padding: 235px 100px 80px;
-    color:#000;
+    color: #000;
     background: #fff;
 
     .section3-text-wrap {
@@ -304,7 +304,7 @@ const EbComponentStyle = styled.div`
       position: sticky;
       display: flex;
       align-items: center;
-      font-size:73px;
+      font-size: 73px;
       line-height: 90px;
       font-weight: bold;
       height: 100vh;
@@ -345,7 +345,7 @@ const EbComponentStyle = styled.div`
 
     .section6-top {
       display: flex;
-      align-items:stretch;
+      align-items: stretch;
       width: auto;
       height: 100vh;
       gap: 100px;
@@ -388,9 +388,10 @@ const EbComponentStyle = styled.div`
         }
 
         .section6-top-desc-item + .section6-top-desc-item::after {
-          content:'';
+          content: "";
           position: absolute;
-          top: calc(296px / 2); left: -55px;
+          top: calc(296px / 2);
+          left: -55px;
           display: block;
           width: 28px;
           height: 28px;
@@ -407,7 +408,7 @@ const EbComponentStyle = styled.div`
           line-height: 36px;
         }
       }
-      
+
       .section6-top-right {
         position: relative;
         display: flex;
@@ -420,11 +421,11 @@ const EbComponentStyle = styled.div`
         img {
           width: 500px;
           margin: 0 auto;
-        } 
+        }
 
         .model-text {
           position: absolute;
-          top: 50%; 
+          top: 50%;
           left: 50%;
           display: flex;
           flex-direction: column;
@@ -433,7 +434,7 @@ const EbComponentStyle = styled.div`
           transform: translate(-50%, -63%);
 
           .bottom-box {
-            display: flex; 
+            display: flex;
             gap: 240px;
           }
 
@@ -452,7 +453,7 @@ const EbComponentStyle = styled.div`
 
     .section6-bottom {
       position: absolute;
-      bottom: 35px; 
+      bottom: 35px;
       left: 100px;
       color: #999;
       font-size: 14px;
@@ -470,7 +471,7 @@ const EbComponentStyle = styled.div`
     width: 100%;
     height: 100vh;
     padding: 40px 100px 0;
-    
+
     .section7-title {
       font-size: 72px;
       font-weight: bold;
@@ -485,7 +486,7 @@ const EbComponentStyle = styled.div`
       line-height: 1.6;
     }
   }
-  
+
   .banner {
     position: relative;
     display: grid;
@@ -493,7 +494,7 @@ const EbComponentStyle = styled.div`
     width: 100%;
     height: 175px;
     margin-top: 40px;
-  
+
     .banner-text {
       position: absolute;
       color: #fff;
@@ -505,7 +506,7 @@ const EbComponentStyle = styled.div`
       font-size: 40px;
       font-weight: bold;
       line-height: 1.25;
-      transition: opacity .3s;
+      transition: opacity 0.3s;
       z-index: 1;
     }
 
@@ -517,7 +518,7 @@ const EbComponentStyle = styled.div`
       height: 100%;
       outline: 1px solid #000;
       backdrop-filter: blur(50px);
-      transition: opacity .3s;
+      transition: opacity 0.3s;
       z-index: 1;
     }
 
@@ -586,7 +587,7 @@ const EbComponentStyle = styled.div`
             padding-right: 50px;
           }
         }
-        
+
         .section8-card-lock-img-wrap {
           position: relative;
           width: 400px;
@@ -602,7 +603,8 @@ const EbComponentStyle = styled.div`
             color: #fff;
             border-radius: 20px;
             border: 2px solid transparent;
-            background-image: linear-gradient(#000, #000), linear-gradient(315deg, #e657af, #0049ff, #43cf2e);
+            background-image: linear-gradient(#000, #000),
+              linear-gradient(315deg, #e657af, #0049ff, #43cf2e);
             background-origin: border-box;
             background-clip: content-box, border-box;
             overflow: hidden;
@@ -622,7 +624,7 @@ const EbComponentStyle = styled.div`
               font-size: 40px;
               font-weight: bold;
               color: transparent;
-              background: linear-gradient(90deg,#43cf2e,#0049ff,#e657af);
+              background: linear-gradient(90deg, #43cf2e, #0049ff, #e657af);
               background-clip: text;
               -webkit-background-clip: text;
             }
@@ -642,8 +644,8 @@ const EbComponentStyle = styled.div`
             top: 12px;
             font-size: 30px;
             font-weight: 400;
-            font-family: 'noto sans', sans-serif;
-            line-height: .67;
+            font-family: "noto sans", sans-serif;
+            line-height: 0.67;
             text-align: right;
           }
         }
@@ -659,7 +661,7 @@ const EbComponentStyle = styled.div`
         font-size: 24px;
         line-height: 1.67;
       }
-      
+
       .section8-card-item-icon {
         display: block;
         width: 40px;
@@ -673,17 +675,17 @@ const EbComponentStyle = styled.div`
 
     .section8-vertical {
       position: absolute;
-      bottom: 0; 
+      bottom: 0;
       left: 0;
       display: flex;
       flex-direction: column;
       width: 100%;
       padding: 0px 100px;
-      
+
       .section8-vertical-inner {
         display: flex;
         flex-direction: column;
-        margin-left: 400px;
+        margin-left: 430px;
         padding-left: 207px;
         word-break: keep-all;
 
@@ -700,29 +702,29 @@ const EbComponentStyle = styled.div`
           line-height: 1.67;
         }
 
-        .section8-vertical-info-wrap { 
+        .section8-vertical-info-wrap {
           display: flex;
           flex-direction: column;
           gap: 50px;
-          margin: 80px 0 100px;
+          margin: 80px 0 160px;
 
           .section8-vertical-info {
             display: flex;
             align-items: center;
             gap: 40px;
 
-
             .section8-vertical-info-box {
               position: relative;
               display: flex;
               align-items: center;
               justify-content: center;
-              width: 350px;
+              width: 400px;
               height: 200px;
               color: #fff;
               border-radius: 20px;
               border: 2px solid transparent;
-              background-image: linear-gradient(#000, #000), linear-gradient(315deg, #e657af, #0049ff, #43cf2e);
+              background-image: linear-gradient(#000, #000),
+                linear-gradient(315deg, #e657af, #0049ff, #43cf2e);
               background-origin: border-box;
               background-clip: content-box, border-box;
               overflow: hidden;
@@ -737,7 +739,7 @@ const EbComponentStyle = styled.div`
                 -webkit-text-fill-color: transparent;
               }
             }
-            
+
             .section8-vertical-info-desc {
               font-size: 24px;
               font-weight: bold;
@@ -746,9 +748,7 @@ const EbComponentStyle = styled.div`
           }
         }
 
-      .section8-service-wrap {
-
-
+        .section8-service-wrap {
           .section8-service-title {
             font-size: 60px;
             font-weight: bold;
@@ -757,23 +757,51 @@ const EbComponentStyle = styled.div`
 
           .section8-service-inner {
             display: flex;
-            flex: 1;
-            flex-basis: 300px;
-            /* display: grid;
-            grid-template-columns: repeat(3, minmax(0, 300px)); */
             margin-top: 80px;
+            column-gap: 50px;
 
             img {
               max-width: 100%;
               height: auto;
             }
+
+            .section8-service-item {
+              max-width: 300px;
+            }
+
+            .section8-service-item-title {
+              margin-top: 24px;
+              font-size: 24px;
+              font-weight: bold;
+              line-height: 1.67;
+            }
           }
-      }
-        
+        }
 
         .section8-vertical-card-wrap {
+          position: relative;
           display: flex;
           align-items: center;
+          width: calc(100% + 2px);
+          height: 100vh;
+
+          .section8-vertical-card-lock {
+            position: relative;
+            width: 400px;
+            height: 540px;
+            padding: 34px;
+            margin-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-shrink: 0;
+            color: #fff;
+            border-radius: 20px;
+            background-blend-mode: multiply;
+            background-color: hsla(0, 0%, 42%, 0.3);
+            /* transform: translateY(-50%); */
+            overflow: hidden;
+          }
 
           .section8-vertical-card-item {
             position: relative;
@@ -788,10 +816,10 @@ const EbComponentStyle = styled.div`
             color: #fff;
             border-radius: 20px;
             background-blend-mode: multiply;
-            background-color: hsla(0, 0%, 42%, .3);
-            transform: translateY(-50%);
-            overflow: hidden; 
-            
+            background-color: hsla(0, 0%, 42%, 0.3);
+            /* transform: translateY(-50%); */
+            overflow: hidden;
+
             .section8-vertical-card-item-head {
               position: relative;
               display: flex;
@@ -807,8 +835,8 @@ const EbComponentStyle = styled.div`
                 top: 12px;
                 font-size: 30px;
                 font-weight: 400;
-                font-family: 'noto sans', sans-serif;
-                line-height: .67;
+                font-family: "noto sans", sans-serif;
+                line-height: 0.67;
                 text-align: right;
               }
             }
@@ -867,12 +895,11 @@ const EbComponentStyle = styled.div`
             width: 100%;
             height: 100%;
             filter: blur(40px);
-            transition: all .5s;
+            transition: all 0.5s;
             z-index: -1;
           }
         }
       }
-
     }
   }
 `;

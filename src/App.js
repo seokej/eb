@@ -6,10 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-
 function App() {
-  document.body.classList.add('dark');
-  
+  document.body.classList.add("dark");
+
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 
   useGSAP(() => {
@@ -167,11 +166,11 @@ function App() {
 
     /**
      * section6 관련 animation 코드
-    */
+     */
     ScrollTrigger.create({
-      trigger:".section6",
+      trigger: ".section6",
       start: "0% 55%",
-      end:"45% 55%",
+      end: "45% 55%",
       markers: false,
       onEnter: function () {
         body.classList.add("dark");
@@ -179,52 +178,60 @@ function App() {
       onLeaveBack: function () {
         body.classList.remove("dark");
       },
-    })
+    });
 
     const section6 = gsap.timeline();
 
     let section6Div = document.querySelector(".section6-top-left");
     let section6EleWidth = section6Div.offsetWidth + 100;
 
-    section6
-      .addLabel("a")
-      .to('.section6-top', { x: -section6EleWidth }, "a");
-    
+    section6.addLabel("a").to(".section6-top", { x: -section6EleWidth }, "a");
+
     ScrollTrigger.create({
       animation: section6,
-      trigger:".section6",
+      trigger: ".section6",
       start: "top top",
-      end:"+=3000",
-      pin:true,
-      markers:false,
-      scrub:true,
-    })
+      end: "+=3000",
+      pin: true,
+      markers: false,
+      scrub: true,
+    });
 
     /**
      * banner 관련 animation 코드
-    */
+     */
     const banner = gsap.timeline({
       scrollTrigger: {
         trigger: ".banner",
-        start:"-10% 85%",
+        start: "-10% 85%",
         end: "200% 85%",
-        markers:false,
-        scrub:true,
+        markers: false,
+        scrub: true,
       },
     });
 
     banner
       .addLabel("a")
-      .from('.banner-color-01', { x: -200, duration: 1 }, "a")
-      .from('.banner-color-02', { x: -300, duration: 1 }, "a")
+      .from(".banner-color-01", { x: -200, duration: 1 }, "a")
+      .from(".banner-color-02", { x: -300, duration: 1 }, "a")
       .from(".banner-color-03", { x: 200, duration: 1 }, "a")
       .addLabel("b")
-      .fromTo(".banner-text", { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, "b")
-      .fromTo(".banner-text-bg", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, "b");
+      .fromTo(
+        ".banner-text",
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 1 },
+        "b"
+      )
+      .fromTo(
+        ".banner-text-bg",
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 0.5 },
+        "b"
+      );
 
     /**
      * section8 관련 animation 코드
-    */
+     */
     const section8 = gsap.timeline();
 
     let section8Div = document.querySelector(".section8-card-wrap");
@@ -235,52 +242,75 @@ function App() {
       .to(".section8-horizon", { x: -515, duration: 3 }, "a")
 
       .addLabel("b")
-      .to(".section8-card-wrap", { x: -section8EleWidth + 330, duration: 3 }, "b")
+      .to(
+        ".section8-card-wrap",
+        { x: -section8EleWidth + 330, duration: 3 },
+        "b"
+      )
       .to(".section8-card-item:nth-child(3)", { x: 440, duration: 3 }, "b")
       .to(".section8-card-item:nth-child(2)", { x: 880, duration: 3 }, "b")
       .to(".section8-card-item:nth-child(1)", { x: 1320, duration: 3 }, "b")
-      .to('.unlock-img', { autoAlpha: 0, duration: 3 }, "b")
-      .from('.lock-img', { autoAlpha: 0, delay: 2, duration: 0.5 }, "b")
+      .to(".unlock-img", { autoAlpha: 0, duration: 3 }, "b")
+      .from(".lock-img", { autoAlpha: 0, delay: 2, duration: 0.5 }, "b")
       .to(".section8-card-item", { autoAlpha: 0, duration: 1 })
       .to(".lock-img", { autoAlpha: 0, duration: 0.5 })
       .from(".section8-card-text", { autoAlpha: 0 })
-    
+
       .addLabel("c")
-      .from(".section8-vertical",{autoAlpha:0},"c")
-      .from(".section8-vertical",{yPercent:100,y:"-200",duration:8,ease: "none"},"c")
-      .from(".section8-vertical-card-lock",{autoAlpha:0})
+      .from(".section8-vertical", { autoAlpha: 0 }, "c")
+      .from(
+        ".section8-vertical",
+        { yPercent: 100, y: "-200", duration: 8, ease: "none" },
+        "c"
+      )
+      .from(".section8-vertical-card-lock", { autoAlpha: 0 })
       .addLabel("d")
-      .to(".section8-vertical-card-item:nth-child(3)",{x:-440,duration:3},"d")
-      .to(".section8-vertical-card-item:nth-child(2)",{x:-880,duration:3},"d")
-      .to(".section8-vertical-card-item:nth-child(1)",{x:-1320,duration:3},"d")
+      .to(
+        ".section8-vertical-card-item:nth-child(3)",
+        { x: -440, duration: 3 },
+        "d"
+      )
+      .to(
+        ".section8-vertical-card-item:nth-child(2)",
+        { x: -880, duration: 3 },
+        "d"
+      )
+      .to(
+        ".section8-vertical-card-item:nth-child(1)",
+        { x: -1320, duration: 3 },
+        "d"
+      )
       .addLabel("e")
-      .from(".section8-vertical-card-lock .light",{autoAlpha:0,duration:3},"e")
-      .from(".section8-vertical-end-text",{autoAlpha:0,duration:3},"e")
+      .from(
+        ".section8-vertical-card-lock .light",
+        { autoAlpha: 0, duration: 3 },
+        "e"
+      )
+      .from(".section8-vertical-end-text", { autoAlpha: 0, duration: 3 }, "e");
 
     ScrollTrigger.create({
       animation: section8,
-      trigger:".section8",
-      start:"top top",
+      trigger: ".section8",
+      start: "top top",
       end: "+=9000",
-      markers:false,
-      scrub:true,
-      pin:true,
-      onEnter:function(){
-          // $('.sc-safety .group-hori .middle-area').addClass("fade");
-      }
-    })
+      markers: false,
+      scrub: true,
+      pin: true,
+      onEnter: function () {
+        // $('.sc-safety .group-hori .middle-area').addClass("fade");
+      },
+    });
 
     ScrollTrigger.create({
-      trigger:".section8-vertical",
+      trigger: ".section8-vertical",
       start: `180% top`,
-      end:"200% bottom",
+      end: "200% bottom",
       markers: false,
-      onEnter:function(){
-          // $('.sc-safety .bg').addClass('blur')
-          // $('.sc-safety .group-scroll .middle-area').fadeIn();
+      onEnter: function () {
+        // $('.sc-safety .bg').addClass('blur')
+        // $('.sc-safety .group-scroll .middle-area').fadeIn();
       },
-  })
-
+    });
   }, []);
 
   return (
@@ -442,8 +472,11 @@ function App() {
 
       <section id="section5" className="section5">
         <div className="section5-text-wrap">
-          <h3>당신의<br/>            
-            다양한 재능을<br/>
+          <h3>
+            당신의
+            <br />
+            다양한 재능을
+            <br />
             DATA ID에.
           </h3>
         </div>
@@ -467,54 +500,60 @@ function App() {
         <div className="section6-top">
           <div className="section6-top-left">
             <h3 className="title">
-                불가능을<br/>
-                DATA ID로<br/>
-                가능하게.
+              불가능을
+              <br />
+              DATA ID로
+              <br />
+              가능하게.
             </h3>
             <ul className="section6-top-desc-wrap">
               <li className="section6-top-desc-item">
-                  <div className="icon-box">
-                      <img src="/images/possibility-system.png" alt="" />
-                  </div>
-                  <div className="text-box">
-                      <p>
-                          기축데이터, 금융,<br/>
-                          사회 전반 시스템 부재
-                      </p>
-                  </div>
+                <div className="icon-box">
+                  <img src="/images/possibility-system.png" alt="" />
+                </div>
+                <div className="text-box">
+                  <p>
+                    기축데이터, 금융,
+                    <br />
+                    사회 전반 시스템 부재
+                  </p>
+                </div>
               </li>
               <li className="section6-top-desc-item">
-                  <div className="icon-box">
-                      <img src="/images/possibility-prove.png" alt="" />
-                  </div>
-                  <div className="text-box">
-                      <p>
-                          개인의 소득 증빙, 재능<br/>
-                          증명 필요
-                      </p>
-                  </div>
+                <div className="icon-box">
+                  <img src="/images/possibility-prove.png" alt="" />
+                </div>
+                <div className="text-box">
+                  <p>
+                    개인의 소득 증빙, 재능
+                    <br />
+                    증명 필요
+                  </p>
+                </div>
               </li>
               <li className="section6-top-desc-item">
-                  <div className="icon-box">
-                      <img src="/images/possibility-nft.png" alt="" />
-                  </div>
-                  <div className="text-box">
-                      <p>
-                          DATA ID 통해 재능 자산<br/>
-                          소유권 증명
-                      </p>
-                  </div>
+                <div className="icon-box">
+                  <img src="/images/possibility-nft.png" alt="" />
+                </div>
+                <div className="text-box">
+                  <p>
+                    DATA ID 통해 재능 자산
+                    <br />
+                    소유권 증명
+                  </p>
+                </div>
               </li>
               <li className="section6-top-desc-item">
-                  <div className="icon-box">
-                      <img src="/images/possibility-global.png" alt="" />
-                  </div>
-                  <div className="text-box">
-                      <p>
-                          커리어 성장,<br/>
-                          금융 혜택으로 연결
-                      </p>
-                  </div>
+                <div className="icon-box">
+                  <img src="/images/possibility-global.png" alt="" />
+                </div>
+                <div className="text-box">
+                  <p>
+                    커리어 성장,
+                    <br />
+                    금융 혜택으로 연결
+                  </p>
+                </div>
               </li>
             </ul>
           </div>
@@ -538,20 +577,29 @@ function App() {
             </div>
           </div>
         </div>
-        
+
         <h3 className="section6-bottom">
-            DATA ID는 나만의 데이터 아이덴티티입니다<br/>
-            이용자 개인이 데이터 소유권을 갖고 언제 어디서든 나를 증명하는 데이터 패스포트이자 다양한 서비스 이용을 가능케하는 패스워드리스 접속 방식입니다.
+          DATA ID는 나만의 데이터 아이덴티티입니다
+          <br />
+          이용자 개인이 데이터 소유권을 갖고 언제 어디서든 나를 증명하는 데이터
+          패스포트이자 다양한 서비스 이용을 가능케하는 패스워드리스 접속
+          방식입니다.
         </h3>
       </section>
-      
+
       <section className="section7">
         <div className="section7-title">
-          <p>쉽고 간편하게<br/>
-          DATA ID로 정보를<br/>
-          보관하고<br/>
-          언제 어디서든<br/>
-          증명해보세요.</p>
+          <p>
+            쉽고 간편하게
+            <br />
+            DATA ID로 정보를
+            <br />
+            보관하고
+            <br />
+            언제 어디서든
+            <br />
+            증명해보세요.
+          </p>
         </div>
 
         <div className="section7-desc">
@@ -563,21 +611,25 @@ function App() {
       </section>
 
       <section className="banner">
-        <div className="banner-text-bg"/>
+        <div className="banner-text-bg" />
         <div className="banner-text">
           DATA ID는 당신을 기록하고 증명하며, 당신의 성장을 도울 수 있어요.
         </div>
-        <div className="banner-color-01"/>
-        <div className="banner-color-02"/>
-        <div className="banner-color-03"/>
+        <div className="banner-color-01" />
+        <div className="banner-color-02" />
+        <div className="banner-color-03" />
       </section>
-      
+
       <section className="section8">
         <div className="section8-horizon">
           <div className="section8-title">
-            <p>안전하고<br />
-            대체불가능한<br />
-            DATA ID.</p>
+            <p>
+              안전하고
+              <br />
+              대체불가능한
+              <br />
+              DATA ID.
+            </p>
           </div>
 
           <ul className="section8-card-wrap">
@@ -590,7 +642,11 @@ function App() {
               <div className="section8-card-item-bottom">
                 <div className="section8-card-item-name">ASSET</div>
                 <div>
-                  <img className="section8-card-item-icon icon-contract" src="/images/contract-icon.png" alt="펼침" />
+                  <img
+                    className="section8-card-item-icon icon-contract"
+                    src="/images/contract-icon.png"
+                    alt="펼침"
+                  />
                 </div>
               </div>
             </li>
@@ -607,7 +663,11 @@ function App() {
               <div className="section8-card-item-bottom">
                 <div className="section8-card-item-name">ASSET</div>
                 <div>
-                  <img className="section8-card-item-icon icon-contract" src="/images/contract-icon.png" alt="펼침" />
+                  <img
+                    className="section8-card-item-icon icon-contract"
+                    src="/images/contract-icon.png"
+                    alt="펼침"
+                  />
                 </div>
               </div>
             </li>
@@ -624,17 +684,29 @@ function App() {
               <div className="section8-card-item-bottom">
                 <div className="section8-card-item-name">ASSET</div>
                 <div>
-                  <img className="section8-card-item-icon icon-contract" src="/images/contract-icon.png" alt="펼침" />
+                  <img
+                    className="section8-card-item-icon icon-contract"
+                    src="/images/contract-icon.png"
+                    alt="펼침"
+                  />
                 </div>
               </div>
             </li>
             <li className="section8-card-lock-img-wrap">
               <div className="section8-card-lock-img-inner">
                 <div className="section8-card-lock-wrap section8-card-lock">
-                  <img className="section8-card-lock-img lock-img" src="/images/lock-icon.png" alt="lock" />
+                  <img
+                    className="section8-card-lock-img lock-img"
+                    src="/images/lock-icon.png"
+                    alt="lock"
+                  />
                 </div>
                 <div className="section8-card-lock-wrap section8-card-unlock">
-                  <img className="section8-card-lock-img unlock-img" src="/images/unlock-icon.png" alt="unlock" />
+                  <img
+                    className="section8-card-lock-img unlock-img"
+                    src="/images/unlock-icon.png"
+                    alt="unlock"
+                  />
                 </div>
                 <div className="section8-card-lock-wrap">
                   <div class="section8-card-text">DATA ID</div>
@@ -647,106 +719,134 @@ function App() {
         <div className="section8-vertical">
           <div className="section8-vertical-inner">
             <div className="section8-vertical-title">
-              <p>더 나은 일거리와 재능 거래,<br/>
-              금융 서비스 이용까지.<br/>
-              모든 게 가능해져요.</p>
+              <p>
+                더 나은 일거리와 재능 거래,
+                <br />
+                금융 서비스 이용까지.
+                <br />
+                모든 게 가능해져요.
+              </p>
             </div>
             <div className="section8-vertical-desc">
               DATA ID는 또 다른 기회와 가치를 연결합니다. DATA ID를 통해 나에게
               <br />
-              맞는 일을 쉽고 빠르게 찾을 수 있고, 금융 서비스 이용이 가능해집니다.
+              맞는 일을 쉽고 빠르게 찾을 수 있고, 금융 서비스 이용이
+              가능해집니다.
               <br />
               창작물의 권리를 지키고, 그 재능을 판매해 수익을 나누는 선순환의
               구조도
               <br />
               만들 수 있습니다.
             </div>
-            <div>
-              <div className="section8-vertical-info-wrap">
-                <div className="section8-vertical-info">
-                  <div className="section8-vertical-info-box">
-                    <div className="section8-vertical-info-box-text">
-                      TALENT
-                      <br />
-                      MARKETPLACE
-                    </div>
+
+            <div className="section8-vertical-info-wrap">
+              <div className="section8-vertical-info">
+                <div className="section8-vertical-info-box">
+                  <div className="section8-vertical-info-box-text">
+                    TALENT
+                    <br />
+                    MARKETPLACE
                   </div>
-                  <div className="section8-vertical-info-desc">DATA ID 기반 지역 일거리 매칭 서비스</div>
                 </div>
-                <div className="section8-vertical-info">
-                  <div className="section8-vertical-info-box">
-                    <div className="section8-vertical-info-box-text">
-                      GIG FINANCE
-                    </div>
-                  </div>
-                  <div className="section8-vertical-info-desc">긱 이코노미 최적화 디지털 금융 솔루션</div>
-                </div>
-                <div className="section8-vertical-info">
-                  <div className="section8-vertical-info-box">
-                    <div className="section8-vertical-info-box-text">
-                      TALENT
-                      <br />
-                      ASSETIZATION
-                    </div>
-                  </div>
-                  <div className="section8-vertical-info-desc">크리에이터 재능 자산화 및 가치 창출</div>
+                <div className="section8-vertical-info-desc">
+                  DATA ID 기반 지역 일거리 매칭 서비스
                 </div>
               </div>
-
-              <div className="section8-service-wrap">
-                <div className="section8-service-title">운영중인 서비스</div>
-
-                <div className="section8-service-inner">
-                  <div className="section8-service-item">
-                    <img src="/images/service-item-1.png" alt="요긱(Yogig)" />
-                    일거리 매칭 서비스 요긱(Yogig)
+              <div className="section8-vertical-info">
+                <div className="section8-vertical-info-box">
+                  <div className="section8-vertical-info-box-text">
+                    GIG FINANCE
                   </div>
-                  <div className="section8-service-item">
-                    <img src="/images/service-item-2.png" alt="어랏(Alot)" />
-                    크리에이터 커뮤니티 마켓 어랏(Alot)
+                </div>
+                <div className="section8-vertical-info-desc">
+                  긱 이코노미 최적화 디지털 금융 솔루션
+                </div>
+              </div>
+              <div className="section8-vertical-info">
+                <div className="section8-vertical-info-box">
+                  <div className="section8-vertical-info-box-text">
+                    TALENT
+                    <br />
+                    ASSETIZATION
                   </div>
-                  <div className="section8-service-item">
-                    <img src="/images/service-item-3.png" alt="JOOB" />
-                    글로벌 재능 매칭 플랫폼 JOOB
-                  </div>
+                </div>
+                <div className="section8-vertical-info-desc">
+                  크리에이터 재능 자산화 및 가치 창출
                 </div>
               </div>
             </div>
 
-            {/* <div className="section8-vertical-card-wrap">
-              <li class="section8-vertical-card-lock">
+            <div className="section8-service-wrap">
+              <div className="section8-service-title">운영중인 서비스</div>
+
+              <div className="section8-service-inner">
+                <div className="section8-service-item">
+                  <img src="/images/service-item-1.png" alt="요긱(Yogig)" />
+                  <p className="section8-service-item-title">
+                    일거리 매칭 서비스 요긱(Yogig)
+                  </p>
+                </div>
+                <div className="section8-service-item">
+                  <img src="/images/service-item-2.png" alt="어랏(Alot)" />
+                  <p className="section8-service-item-title">
+                    크리에이터 커뮤니티 마켓 어랏(Alot)
+                  </p>
+                </div>
+                <div className="section8-service-item">
+                  <img src="/images/service-item-3.png" alt="JOOB" />
+                  <p className="section8-service-item-title">
+                    글로벌 재능 매칭 플랫폼 JOOB
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="section8-vertical-card-wrap">
+              <div class="section8-vertical-card-lock">
                 <div class="bg">
-                    <div class="section8-vertical-card-text">DATA ID</div>          
-                </div>     
-                <div class="light"></div>             
-              </li>
-              
+                  <div class="section8-vertical-card-text">DATA ID</div>
+                </div>
+                <div class="light"></div>
+              </div>
+
               <div className="section8-vertical-card-item">
                 <div className="section8-vertical-card-item-top">
                   <div className="section8-vertical-card-item-head">
                     <span>CREATOR</span>
-                    <span className="section8-vertical-card-item-star">****</span>
+                    <span className="section8-vertical-card-item-star">
+                      ****
+                    </span>
                   </div>
 
                   <div className="section8-vertical-card-item-desc">
-                  크리에이터들이 만들어 낸 다양한 창작물과 재능을 <br />
-                  자산화, 토큰화 할 수 있는 기반을 만들어요.
+                    크리에이터들이 만들어 낸 다양한 창작물과 재능을 <br />
+                    자산화, 토큰화 할 수 있는 기반을 만들어요.
                   </div>
                 </div>
 
                 <div className="section8-vertical-card-item-bottom">
                   <div className="section8-vertical-card-item-profile">
                     <div className="section8-vertical-card-item-circle"></div>
-                    <div className="section8-vertical-card-item-name">model_top</div>
+                    <div className="section8-vertical-card-item-name">
+                      model_top
+                    </div>
                   </div>
 
                   <div>
-                    <img className="section8-vertical-card-item-icon icon-expand" src="/images/expand-icon.png" alt="배경안흐린상태" />
-                    <img className="section8-vertical-card-item-icon icon-contract"  src="/images/contract-icon.png" alt="배경흐려진상태" />
+                    <img
+                      className="section8-vertical-card-item-icon icon-expand"
+                      src="/images/expand-icon.png"
+                      alt="배경안흐린상태"
+                    />
+                    <img
+                      className="section8-vertical-card-item-icon icon-contract"
+                      src="/images/contract-icon.png"
+                      alt="배경흐려진상태"
+                    />
                   </div>
                 </div>
 
-                <div className="section8-vertical-card-bg"/>
+                <div className="section8-vertical-card-bg" />
               </div>
 
               <div className="section8-vertical-card-item">
@@ -757,7 +857,9 @@ function App() {
                       <br />
                       WORKER
                     </span>
-                    <span className="section8-vertical-card-item-star">****</span>
+                    <span className="section8-vertical-card-item-star">
+                      ****
+                    </span>
                   </div>
 
                   <div className="section8-vertical-card-item-desc">
@@ -770,16 +872,26 @@ function App() {
                 <div className="section8-vertical-card-item-bottom">
                   <div className="section8-vertical-card-item-profile">
                     <div className="section8-vertical-card-item-circle"></div>
-                    <div className="section8-vertical-card-item-name">elon.M</div>
+                    <div className="section8-vertical-card-item-name">
+                      elon.M
+                    </div>
                   </div>
 
                   <div>
-                    <img className="section8-vertical-card-item-icon icon-expand" src="/images/expand-icon.png" alt="배경안흐린상태" />
-                    <img className="section8-vertical-card-item-icon icon-contract"  src="/images/contract-icon.png" alt="배경흐려진상태" />
+                    <img
+                      className="section8-vertical-card-item-icon icon-expand"
+                      src="/images/expand-icon.png"
+                      alt="배경안흐린상태"
+                    />
+                    <img
+                      className="section8-vertical-card-item-icon icon-contract"
+                      src="/images/contract-icon.png"
+                      alt="배경흐려진상태"
+                    />
                   </div>
                 </div>
 
-                <div className="section8-vertical-card-bg"/>
+                <div className="section8-vertical-card-bg" />
               </div>
 
               <div className="section8-vertical-card-item">
@@ -790,7 +902,9 @@ function App() {
                       <br />
                       EMPLOYED
                     </span>
-                    <span className="section8-vertical-card-item-star">****</span>
+                    <span className="section8-vertical-card-item-star">
+                      ****
+                    </span>
                   </div>
 
                   <div className="section8-vertical-card-item-desc">
@@ -803,23 +917,34 @@ function App() {
                 <div className="section8-vertical-card-item-bottom">
                   <div className="section8-vertical-card-item-profile">
                     <div className="section8-vertical-card-item-circle"></div>
-                    <div className="section8-vertical-card-item-name">cafe22</div>
+                    <div className="section8-vertical-card-item-name">
+                      cafe22
+                    </div>
                   </div>
 
                   <div>
-                    <img className="section8-card-item-icon icon-expand" src="/images/expand-icon.png" alt="배경안흐린상태" />
-                    <img className="section8-card-item-icon icon-contract"  src="/images/contract-icon.png" alt="배경흐려진상태" />
+                    <img
+                      className="section8-card-item-icon icon-expand"
+                      src="/images/expand-icon.png"
+                      alt="배경안흐린상태"
+                    />
+                    <img
+                      className="section8-card-item-icon icon-contract"
+                      src="/images/contract-icon.png"
+                      alt="배경흐려진상태"
+                    />
                   </div>
                 </div>
 
-                <div className="section8-vertical-card-bg"/>
+                <div className="section8-vertical-card-bg" />
               </div>
 
               <p class="section8-vertical-end-text">
-                누구든<br/>
+                누구든
+                <br />
                 무엇이든
               </p>
-            </div> */}
+            </div>
           </div>
         </div>
       </section>
