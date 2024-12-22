@@ -266,17 +266,17 @@ function App() {
       .from(".section8-vertical-card-lock", { autoAlpha: 0 })
       .addLabel("d")
       .to(
-        ".section8-vertical-card-item:nth-child(3)",
+        ".section8-vertical-card-item:nth-child(2)",
         { x: -440, duration: 3 },
         "d"
       )
       .to(
-        ".section8-vertical-card-item:nth-child(2)",
+        ".section8-vertical-card-item:nth-child(3)",
         { x: -880, duration: 3 },
         "d"
       )
       .to(
-        ".section8-vertical-card-item:nth-child(1)",
+        ".section8-vertical-card-item:nth-child(4)",
         { x: -1320, duration: 3 },
         "d"
       )
@@ -296,9 +296,6 @@ function App() {
       markers: false,
       scrub: true,
       pin: true,
-      onEnter: function () {
-        // $('.sc-safety .group-hori .middle-area').addClass("fade");
-      },
     });
 
     ScrollTrigger.create({
@@ -306,11 +303,81 @@ function App() {
       start: `180% top`,
       end: "200% bottom",
       markers: false,
+    });
+
+    /**
+     * section9 관련 animation 코드
+     */
+    ScrollTrigger.create({
+      trigger: ".section9",
+      start: "-15% 55%",
+      end: "45% 55%",
+      markers: false,
+      anticipatePin: 1,
       onEnter: function () {
-        // $('.sc-safety .bg').addClass('blur')
-        // $('.sc-safety .group-scroll .middle-area').fadeIn();
+        body.classList.remove("dark");
+      },
+      onLeaveBack: function () {
+        body.classList.add("dark");
       },
     });
+
+    /**
+     * section10 관련 animation 코드
+     */
+    const section10 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section10",
+        start: "-10% 52%",
+        end: "45% 52%",
+        scrub: true,
+      },
+    });
+
+    section10
+      .addLabel("a")
+      .from(".section10-bg-before", 1, { xPercent: 100, duration: 1 }, "a")
+      .from(".section10-bg-after", { xPercent: -100, duration: 1 }, "a")
+      .to(".section10-text1", { xPercent: -70, duration: 1 }, "a")
+      .to(".section10-text3", { xPercent: 80, duration: 1 }, "a");
+
+    /**
+     * section11 관련 animation 코드
+     */
+    const section11 = gsap.timeline();
+
+    ScrollTrigger.create({
+      animation: section11,
+      trigger: ".section11",
+      start: "top top",
+      end: "+=1500",
+      pin: true,
+      markers: false,
+      scrub: true,
+      onEnter: function () {
+        // $(".sc-economy .bg").addClass("blur");
+      },
+      onLeave: function () {
+        // $(".sc-economy .group-arrow").fadeOut();
+      },
+      onEnterBack: function () {
+        // $(".sc-economy .group-arrow").fadeIn();
+      },
+    });
+
+    section11
+      .addLabel("a")
+      .to(
+        ".sc-economy .group-hori",
+        { xPercent: -100, x: "100vw", duration: 4 },
+        "a"
+      )
+      .from(".sc-economy .group-arrow", { autoAlpha: 0, duration: 1 }, "a")
+      .from(
+        ".sc-economy .group-arrow .fade",
+        { autoAlpha: 0, delay: 1, duration: 1 },
+        "a"
+      );
   }, []);
 
   return (
@@ -718,89 +785,91 @@ function App() {
 
         <div className="section8-vertical">
           <div className="section8-vertical-inner">
-            <div className="section8-vertical-title">
-              <p>
-                더 나은 일거리와 재능 거래,
+            <div className="section8-vertical-box">
+              <div className="section8-vertical-title">
+                <p>
+                  더 나은 일거리와 재능 거래,
+                  <br />
+                  금융 서비스 이용까지.
+                  <br />
+                  모든 게 가능해져요.
+                </p>
+              </div>
+              <div className="section8-vertical-desc">
+                DATA ID는 또 다른 기회와 가치를 연결합니다. DATA ID를 통해
+                나에게
                 <br />
-                금융 서비스 이용까지.
+                맞는 일을 쉽고 빠르게 찾을 수 있고, 금융 서비스 이용이
+                가능해집니다.
                 <br />
-                모든 게 가능해져요.
-              </p>
-            </div>
-            <div className="section8-vertical-desc">
-              DATA ID는 또 다른 기회와 가치를 연결합니다. DATA ID를 통해 나에게
-              <br />
-              맞는 일을 쉽고 빠르게 찾을 수 있고, 금융 서비스 이용이
-              가능해집니다.
-              <br />
-              창작물의 권리를 지키고, 그 재능을 판매해 수익을 나누는 선순환의
-              구조도
-              <br />
-              만들 수 있습니다.
-            </div>
+                창작물의 권리를 지키고, 그 재능을 판매해 수익을 나누는 선순환의
+                구조도
+                <br />
+                만들 수 있습니다.
+              </div>
 
-            <div className="section8-vertical-info-wrap">
-              <div className="section8-vertical-info">
-                <div className="section8-vertical-info-box">
-                  <div className="section8-vertical-info-box-text">
-                    TALENT
-                    <br />
-                    MARKETPLACE
+              <div className="section8-vertical-info-wrap">
+                <div className="section8-vertical-info">
+                  <div className="section8-vertical-info-box">
+                    <div className="section8-vertical-info-box-text">
+                      TALENT
+                      <br />
+                      MARKETPLACE
+                    </div>
+                  </div>
+                  <div className="section8-vertical-info-desc">
+                    DATA ID 기반 지역 일거리 매칭 서비스
                   </div>
                 </div>
-                <div className="section8-vertical-info-desc">
-                  DATA ID 기반 지역 일거리 매칭 서비스
-                </div>
-              </div>
-              <div className="section8-vertical-info">
-                <div className="section8-vertical-info-box">
-                  <div className="section8-vertical-info-box-text">
-                    GIG FINANCE
+                <div className="section8-vertical-info">
+                  <div className="section8-vertical-info-box">
+                    <div className="section8-vertical-info-box-text">
+                      GIG FINANCE
+                    </div>
+                  </div>
+                  <div className="section8-vertical-info-desc">
+                    긱 이코노미 최적화 디지털 금융 솔루션
                   </div>
                 </div>
-                <div className="section8-vertical-info-desc">
-                  긱 이코노미 최적화 디지털 금융 솔루션
-                </div>
-              </div>
-              <div className="section8-vertical-info">
-                <div className="section8-vertical-info-box">
-                  <div className="section8-vertical-info-box-text">
-                    TALENT
-                    <br />
-                    ASSETIZATION
+                <div className="section8-vertical-info">
+                  <div className="section8-vertical-info-box">
+                    <div className="section8-vertical-info-box-text">
+                      TALENT
+                      <br />
+                      ASSETIZATION
+                    </div>
+                  </div>
+                  <div className="section8-vertical-info-desc">
+                    크리에이터 재능 자산화 및 가치 창출
                   </div>
                 </div>
-                <div className="section8-vertical-info-desc">
-                  크리에이터 재능 자산화 및 가치 창출
+              </div>
+
+              <div className="section8-service-wrap">
+                <div className="section8-service-title">운영중인 서비스</div>
+
+                <div className="section8-service-inner">
+                  <div className="section8-service-item">
+                    <img src="/images/service-item-1.png" alt="요긱(Yogig)" />
+                    <p className="section8-service-item-title">
+                      일거리 매칭 서비스 요긱(Yogig)
+                    </p>
+                  </div>
+                  <div className="section8-service-item">
+                    <img src="/images/service-item-2.png" alt="어랏(Alot)" />
+                    <p className="section8-service-item-title">
+                      크리에이터 커뮤니티 마켓 어랏(Alot)
+                    </p>
+                  </div>
+                  <div className="section8-service-item">
+                    <img src="/images/service-item-3.png" alt="JOOB" />
+                    <p className="section8-service-item-title">
+                      글로벌 재능 매칭 플랫폼 JOOB
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="section8-service-wrap">
-              <div className="section8-service-title">운영중인 서비스</div>
-
-              <div className="section8-service-inner">
-                <div className="section8-service-item">
-                  <img src="/images/service-item-1.png" alt="요긱(Yogig)" />
-                  <p className="section8-service-item-title">
-                    일거리 매칭 서비스 요긱(Yogig)
-                  </p>
-                </div>
-                <div className="section8-service-item">
-                  <img src="/images/service-item-2.png" alt="어랏(Alot)" />
-                  <p className="section8-service-item-title">
-                    크리에이터 커뮤니티 마켓 어랏(Alot)
-                  </p>
-                </div>
-                <div className="section8-service-item">
-                  <img src="/images/service-item-3.png" alt="JOOB" />
-                  <p className="section8-service-item-title">
-                    글로벌 재능 매칭 플랫폼 JOOB
-                  </p>
-                </div>
-              </div>
-            </div>
-
             <div className="section8-vertical-card-wrap">
               <div class="section8-vertical-card-lock">
                 <div class="bg">
@@ -949,155 +1018,141 @@ function App() {
         </div>
       </section>
 
-      {/*
-      <section>
-        <div>
-          <p>재능 자산을 기축으로</p>
-          <p>시장은 변화하고 있어요.</p>
-        </div>
-        <div>
-          과거에는 국가와 기관에 대한 신뢰를 바탕으로 법정 화폐나 <br />
-          증권을 거래했다면, 오늘날에는 탈중앙화가 빠르게 이루어져 <br />
-          암호화폐와 NFT같은 가상자산 금융 채널이 늘고 있죠. <br />
-          최근에는 긱워커와 크리에이터의 숫자와 소득이 증가하며 <br />
-          국내외 기업들이 빅데이터를 활용해 이들과 새로운 금융 서비스를 <br />
-          발전시키겠다고 선언하는 사례가 늘고 있어요.
+      <section className="section9">
+        <div className="section9-text-wrap">
+          <div className="section9-text-title-wrap">
+            <p>재능 자산을 기축으로</p>
+            <p>시장은 변화하고 있어요.</p>
+          </div>
+          <div className="section9-text-desc-wrap">
+            과거에는 국가와 기관에 대한 신뢰를 바탕으로 법정 화폐나 <br />
+            증권을 거래했다면, 오늘날에는 탈중앙화가 빠르게 이루어져 <br />
+            암호화폐와 NFT같은 가상자산 금융 채널이 늘고 있죠. <br />
+            최근에는 긱워커와 크리에이터의 숫자와 소득이 증가하며 <br />
+            국내외 기업들이 빅데이터를 활용해 이들과 새로운 금융 서비스를 <br />
+            발전시키겠다고 선언하는 사례가 늘고 있어요.
+          </div>
         </div>
       </section>
-      */}
 
-      {/*
-      <section>
-        <div>
-          <p>글로벌 블록체인</p>
-          <p>네트워크를 기반으로</p>
-          <p>시작하는 도약.</p>
+      <section className="section10">
+        <div className="section10-bg-before" />
+        <div className="section10-bg-after" />
+        <div className="section10-text-wrap">
+          <p className="section10-text1">글로벌 블록체인</p>
+          <p className="section10-text2">네트워크를 기반으로</p>
+          <p className="section10-text3">시작하는 도약.</p>
         </div>
-        <img src="/images/prove2.jpg" alt="하늘" />
       </section>
-      */}
 
-      {/*
-      <section>
+      <section className="section11">
+        <div className="section11-title">
+          전통 금융에서 <br />
+          미래 금융으로.
+        </div>
         <div>
           <div>
-            전통 금융에서 <br />
-            미래 금융으로.
-          </div>
-          <div>
+            <p>전통자산</p>
             <div>
-              <p>전통자산</p>
-              <div>
-                <span>****</span>
-                <span>기축자산</span>
-              </div>
-              <div>
-                <span>상품</span>
-                <span>금융상품, 서비스</span>
-              </div>
-              <div>
-                <span>자산</span>
-                <span>FIAT, 유가증권</span>
-              </div>
-              <div>
-                <span>신뢰</span>
-                <span>
-                  국가, 기관 등 중앙체계에 대한 신뢰 핀테크 등 B2C 서비스
-                </span>
-              </div>
-              <div>
-                <div>핀테크 등 B2C 서비스</div>
-                <div>
-                  <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-                  <img
-                    src="/images/contract-icon.png"
-                    alt="배경흐려진상태"
-                  />
-                </div>
-              </div>
+              <span>****</span>
+              <span>기축자산</span>
             </div>
             <div>
-              <p>가상자산</p>
-              <div>
-                <span>****</span>
-              </div>
-              <div>
-                <span>상품</span>
-                <span>거래소, DeFi</span>
-              </div>
-              <div>
-                <span>자산</span>
-                <span>Digital Currency</span>
-              </div>
-              <div>
-                <span>신뢰</span>
-                <span>블록체인</span>
-              </div>
-              <div>
-                <div>월렛 등 B2C 서비스</div>
-                <div>
-                  <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-                  <img
-                    src="/images/contract-icon.png"
-                    alt="배경흐려진상태"
-                  />
-                </div>
-              </div>
+              <span>상품</span>
+              <span>금융상품, 서비스</span>
             </div>
             <div>
-              <p>재능자산</p>
-              <div>
-                <span>****</span>
-                <span>기축자산</span>
-              </div>
-              <div>
-                <span>상품</span>
-                <span>Gig Finance + Talent Assetization</span>
-              </div>
-              <div>
-                <span>자산</span>
-                <span>DATA ID + P3</span>
-              </div>
-              <div>
-                <span>신뢰</span>
-                <span>블록체인 DATA ID 네트워크</span>
-              </div>
-              <div>
-                <div>Talent Marketplace</div>
-                <div>
-                  <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-                  <img
-                    src="/images/contract-icon.png"
-                    alt="배경흐려진상태"
-                  />
-                </div>
-              </div>
+              <span>자산</span>
+              <span>FIAT, 유가증권</span>
             </div>
             <div>
-              엔터프라이즈블록체인이 글로벌 블록체인 네트워크 DATA ID를 통해
-              만들어갈 긱 이코노미와 크리에이터 이코노미 생태계를 기대해주세요.
+              <span>신뢰</span>
+              <span>
+                국가, 기관 등 중앙체계에 대한 신뢰 핀테크 등 B2C 서비스
+              </span>
+            </div>
+            <div>
+              <div>핀테크 등 B2C 서비스</div>
+              <div>
+                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
+              </div>
             </div>
           </div>
           <div>
-            <div className="down">
-              <div className="down-arrow">
-                <span className="down-arrow-item"></span>
-                <span className="down-arrow-item"></span>
-                <span className="down-arrow-item"></span>
-                <span className="down-arrow-item"></span>
-                <span className="down-arrow-item"></span>
-                <span className="down-arrow-item"></span>
-                <span className="down-arrow-item"></span>
+            <p>가상자산</p>
+            <div>
+              <span>****</span>
+            </div>
+            <div>
+              <span>상품</span>
+              <span>거래소, DeFi</span>
+            </div>
+            <div>
+              <span>자산</span>
+              <span>Digital Currency</span>
+            </div>
+            <div>
+              <span>신뢰</span>
+              <span>블록체인</span>
+            </div>
+            <div>
+              <div>월렛 등 B2C 서비스</div>
+              <div>
+                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
               </div>
-              <div className="down-title">
-                <span className="down-title-item">전통금융</span>
-                <span className="down-title-item">미래금융</span>
+            </div>
+          </div>
+          <div>
+            <p>재능자산</p>
+            <div>
+              <span>****</span>
+              <span>기축자산</span>
+            </div>
+            <div>
+              <span>상품</span>
+              <span>Gig Finance + Talent Assetization</span>
+            </div>
+            <div>
+              <span>자산</span>
+              <span>DATA ID + P3</span>
+            </div>
+            <div>
+              <span>신뢰</span>
+              <span>블록체인 DATA ID 네트워크</span>
+            </div>
+            <div>
+              <div>Talent Marketplace</div>
+              <div>
+                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
+                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
               </div>
+            </div>
+          </div>
+          <div>
+            엔터프라이즈블록체인이 글로벌 블록체인 네트워크 DATA ID를 통해
+            만들어갈 긱 이코노미와 크리에이터 이코노미 생태계를 기대해주세요.
+          </div>
+        </div>
+        <div>
+          <div className="down">
+            <div className="down-arrow">
+              <span className="down-arrow-item"></span>
+              <span className="down-arrow-item"></span>
+              <span className="down-arrow-item"></span>
+              <span className="down-arrow-item"></span>
+              <span className="down-arrow-item"></span>
+              <span className="down-arrow-item"></span>
+              <span className="down-arrow-item"></span>
+            </div>
+            <div className="down-title">
+              <span className="down-title-item">전통금융</span>
+              <span className="down-title-item">미래금융</span>
             </div>
           </div>
         </div>
       </section>
-      */}
 
       {/*
       <section>
