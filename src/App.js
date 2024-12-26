@@ -14,9 +14,9 @@ function App() {
   useGSAP(() => {
     var header = document.getElementById("header");
     var body = document.body;
-    var logo = document.getElementById("logo");
-    var navLogo = document.getElementById("navLogo");
     var section5ele = document.getElementById("section5");
+    var section11bg = document.getElementById("section11-card-item-bg");
+    var section11arrow = document.getElementById("section11-arrow");
 
     /**
      * nav 관련 scroll 애니메이션 코드
@@ -300,7 +300,7 @@ function App() {
 
     ScrollTrigger.create({
       trigger: ".section8-vertical",
-      start: `180% top`,
+      start: "180% top",
       end: "200% bottom",
       markers: false,
     });
@@ -345,6 +345,52 @@ function App() {
      * section11 관련 animation 코드
      */
     const section11 = gsap.timeline();
+    const section11_2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section11",
+        start: "0% 20%",
+        end: "100% 0%",
+      },
+    });
+
+    section11_2
+      .addLabel("a")
+      .to(
+        ".section11 .section11-card-desc-wrap",
+        {
+          autoAlpha: 1,
+          duration: 1,
+        },
+        "a"
+      )
+      .to(
+        ".section11-card-icon.expand",
+        {
+          autoAlpha: 0,
+        },
+        "a"
+      )
+      .to(
+        ".section11-card-icon.contract",
+        {
+          autoAlpha: 1,
+        },
+        "a"
+      );
+
+    section11
+      .addLabel("a")
+      .to(
+        ".section11 .section11-inner",
+        { xPercent: -100, x: "100vw", duration: 4 },
+        "a"
+      )
+      .from(".section11 .section11-arrow", { autoAlpha: 0, duration: 1 }, "a")
+      .from(
+        ".section11 .section11-arrow .fadein",
+        { autoAlpha: 0, delay: 1, duration: 1 },
+        "a"
+      );
 
     ScrollTrigger.create({
       animation: section11,
@@ -355,29 +401,15 @@ function App() {
       markers: false,
       scrub: true,
       onEnter: function () {
-        // $(".sc-economy .bg").addClass("blur");
+        section11bg.classList.add("blur");
       },
       onLeave: function () {
-        // $(".sc-economy .group-arrow").fadeOut();
+        section11arrow.classList.add("fadein");
       },
       onEnterBack: function () {
-        // $(".sc-economy .group-arrow").fadeIn();
+        section11arrow.classList.add("fadeout");
       },
     });
-
-    section11
-      .addLabel("a")
-      .to(
-        ".sc-economy .group-hori",
-        { xPercent: -100, x: "100vw", duration: 4 },
-        "a"
-      )
-      .from(".sc-economy .group-arrow", { autoAlpha: 0, duration: 1 }, "a")
-      .from(
-        ".sc-economy .group-arrow .fade",
-        { autoAlpha: 0, delay: 1, duration: 1 },
-        "a"
-      );
   }, []);
 
   return (
@@ -776,7 +808,7 @@ function App() {
                   />
                 </div>
                 <div className="section8-card-lock-wrap">
-                  <div class="section8-card-text">DATA ID</div>
+                  <div className="section8-card-text">DATA ID</div>
                 </div>
               </div>
             </li>
@@ -871,11 +903,11 @@ function App() {
               </div>
             </div>
             <div className="section8-vertical-card-wrap">
-              <div class="section8-vertical-card-lock">
-                <div class="bg">
-                  <div class="section8-vertical-card-text">DATA ID</div>
+              <div className="section8-vertical-card-lock">
+                <div className="bg">
+                  <div className="section8-vertical-card-text">DATA ID</div>
                 </div>
-                <div class="light"></div>
+                <div className="light"></div>
               </div>
 
               <div className="section8-vertical-card-item">
@@ -1008,7 +1040,7 @@ function App() {
                 <div className="section8-vertical-card-bg" />
               </div>
 
-              <p class="section8-vertical-end-text">
+              <p className="section8-vertical-end-text">
                 누구든
                 <br />
                 무엇이든
@@ -1046,96 +1078,156 @@ function App() {
       </section>
 
       <section className="section11">
-        <div className="section11-title">
-          전통 금융에서 <br />
-          미래 금융으로.
+        <div className="section11-inner">
+          <div className="section11-title">
+            전통 금융에서 <br />
+            미래 금융으로.
+          </div>
+
+          <div className="section11-card-wrap">
+            <div className="section11-card-item">
+              <div className="section11-card-top">
+                <p className="section11-card-top-title">전통자산</p>
+                <div className="section11-card-top-right">
+                  <div>****</div>
+                  <div className="section11-card-top-subtitle">기축자산</div>
+                </div>
+              </div>
+
+              <div className="section11-card-desc-wrap">
+                <div className="section11-card-desc">
+                  <strong>상품</strong>
+                  <div>금융상품, 서비스</div>
+                </div>
+
+                <div className="section11-card-desc">
+                  <strong>자산</strong>
+                  <span>FIAT, 유가증권</span>
+                </div>
+
+                <div className="section11-card-desc">
+                  <strong>신뢰</strong>
+                  <span>
+                    국가, 기관 등 중앙체계에 대한 신뢰 핀테크 등 B2C 서비스
+                  </span>
+                </div>
+              </div>
+
+              <div className="section11-card-bottom">
+                <strong>핀테크 등 B2C 서비스</strong>
+                <div>
+                  <img
+                    className="section11-card-icon expand"
+                    src="/images/expand-icon.png"
+                    alt="배경안흐린상태"
+                  />
+                  <img
+                    className="section11-card-icon contract"
+                    src="/images/contract-icon.png"
+                    alt="배경흐려진상태"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="section11-card-item">
+              <div className="section11-card-top">
+                <p className="section11-card-top-title">가상자산</p>
+                <div className="section11-card-top-right">
+                  <div>****</div>
+                </div>
+              </div>
+
+              <div className="section11-card-desc-wrap">
+                <div className="section11-card-desc">
+                  <strong>상품</strong>
+                  <span>거래소, DeFi</span>
+                </div>
+
+                <div className="section11-card-desc">
+                  <strong>자산</strong>
+                  <span>Digital Currency</span>
+                </div>
+
+                <div className="section11-card-desc">
+                  <strong>신뢰</strong>
+                  <span>블록체인</span>
+                </div>
+              </div>
+
+              <div className="section11-card-bottom">
+                <div>월렛 등 B2C 서비스</div>
+                <div>
+                  <img
+                    className="section11-card-icon expand"
+                    src="/images/expand-icon.png"
+                    alt="배경안흐린상태"
+                  />
+                  <img
+                    className="section11-card-icon contract"
+                    src="/images/contract-icon.png"
+                    alt="배경흐려진상태"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div id="section11-card-item-bg" className="section11-card-item">
+              <div className="section11-card-top">
+                <p className="section11-card-top-title">재능자산</p>
+                <div className="section11-card-top-right">
+                  <div>****</div>
+                  <div className="section11-card-top-subtitle">기축자산</div>
+                </div>
+              </div>
+
+              <div className="section11-card-desc-wrap">
+                <div className="section11-card-desc">
+                  <strong>상품</strong>
+                  <span>Gig Finance + Talent Assetization</span>
+                </div>
+
+                <div className="section11-card-desc">
+                  <strong>자산</strong>
+                  <span>DATA ID + P3</span>
+                </div>
+
+                <div className="section11-card-desc">
+                  <strong>신뢰</strong>
+                  <span>블록체인 DATA ID 네트워크</span>
+                </div>
+              </div>
+
+              <div className="section11-card-bottom">
+                <div>Talent Marketplace</div>
+                <div>
+                  <img
+                    className="section11-card-icon expand"
+                    src="/images/expand-icon.png"
+                    alt="배경안흐린상태"
+                  />
+                  <img
+                    className="section11-card-icon contract"
+                    src="/images/contract-icon.png"
+                    alt="배경흐려진상태"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="section11-card-end">
+              엔터프라이즈블록체인이 글로벌
+              <br />
+              블록체인 네트워크 DATA ID를 통해
+              <br />
+              만들어갈 긱 이코노미와 크리에이터
+              <br />
+              이코노미 생태계를 기대해주세요.
+            </div>
+          </div>
         </div>
-        <div>
-          <div>
-            <p>전통자산</p>
-            <div>
-              <span>****</span>
-              <span>기축자산</span>
-            </div>
-            <div>
-              <span>상품</span>
-              <span>금융상품, 서비스</span>
-            </div>
-            <div>
-              <span>자산</span>
-              <span>FIAT, 유가증권</span>
-            </div>
-            <div>
-              <span>신뢰</span>
-              <span>
-                국가, 기관 등 중앙체계에 대한 신뢰 핀테크 등 B2C 서비스
-              </span>
-            </div>
-            <div>
-              <div>핀테크 등 B2C 서비스</div>
-              <div>
-                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
-              </div>
-            </div>
-          </div>
-          <div>
-            <p>가상자산</p>
-            <div>
-              <span>****</span>
-            </div>
-            <div>
-              <span>상품</span>
-              <span>거래소, DeFi</span>
-            </div>
-            <div>
-              <span>자산</span>
-              <span>Digital Currency</span>
-            </div>
-            <div>
-              <span>신뢰</span>
-              <span>블록체인</span>
-            </div>
-            <div>
-              <div>월렛 등 B2C 서비스</div>
-              <div>
-                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
-              </div>
-            </div>
-          </div>
-          <div>
-            <p>재능자산</p>
-            <div>
-              <span>****</span>
-              <span>기축자산</span>
-            </div>
-            <div>
-              <span>상품</span>
-              <span>Gig Finance + Talent Assetization</span>
-            </div>
-            <div>
-              <span>자산</span>
-              <span>DATA ID + P3</span>
-            </div>
-            <div>
-              <span>신뢰</span>
-              <span>블록체인 DATA ID 네트워크</span>
-            </div>
-            <div>
-              <div>Talent Marketplace</div>
-              <div>
-                <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-                <img src="/images/contract-icon.png" alt="배경흐려진상태" />
-              </div>
-            </div>
-          </div>
-          <div>
-            엔터프라이즈블록체인이 글로벌 블록체인 네트워크 DATA ID를 통해
-            만들어갈 긱 이코노미와 크리에이터 이코노미 생태계를 기대해주세요.
-          </div>
-        </div>
-        <div>
+
+        <div id="section11-arrow" className="section11-arrow fadein">
           <div className="down">
             <div className="down-arrow">
               <span className="down-arrow-item"></span>
