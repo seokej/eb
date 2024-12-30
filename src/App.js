@@ -14,9 +14,6 @@ function App() {
   useGSAP(() => {
     var header = document.getElementById("header");
     var body = document.body;
-    var section5ele = document.getElementById("section5");
-    var section11bg = document.getElementById("section11-card-item-bg");
-    var section11arrow = document.getElementById("section11-arrow");
 
     /**
      * nav 관련 scroll 애니메이션 코드
@@ -232,6 +229,23 @@ function App() {
     /**
      * section8 관련 animation 코드
      */
+    var section8icon = document.getElementsByClassName(
+      "section8-card-item-icon"
+    );
+    var section8name = document.getElementsByClassName(
+      "section8-card-item-name-inner"
+    );
+    var section8Img = document.getElementsByClassName("section8-card-img");
+    var section8VerDesc = document.getElementsByClassName(
+      "section8-vertical-card-item-desc"
+    );
+    var section8VerBg = document.getElementsByClassName(
+      "section8-vertical-card-bg"
+    );
+    var section8VerIcon = document.getElementsByClassName(
+      "section8-vertical-card-item-icon"
+    );
+
     const section8 = gsap.timeline();
 
     let section8Div = document.querySelector(".section8-card-wrap");
@@ -288,6 +302,24 @@ function App() {
       )
       .from(".section8-vertical-end-text", { autoAlpha: 0, duration: 3 }, "e");
 
+    const secrion8_img_fade = () => {
+      for (let i = 0; i < section8Img.length; i++) {
+        section8Img.item(i).classList.add("fade");
+      }
+    };
+
+    const secrion8_icon_fade = () => {
+      for (let i = 0; i < section8icon.length; i++) {
+        section8icon.item(i).classList.add("fade");
+      }
+    };
+
+    const secrion8_name_fade = () => {
+      for (let i = 0; i < section8name.length; i++) {
+        section8name.item(i).classList.add("fade");
+      }
+    };
+
     ScrollTrigger.create({
       animation: section8,
       trigger: ".section8",
@@ -296,13 +328,41 @@ function App() {
       markers: false,
       scrub: true,
       pin: true,
+      onEnter: function () {
+        secrion8_img_fade();
+        secrion8_icon_fade();
+        secrion8_name_fade();
+      },
     });
+
+    const section8_vertical_bg = () => {
+      for (let i = 0; i < section8VerBg.length; i++) {
+        section8VerBg.item(i).classList.add("blur");
+      }
+    };
+
+    const section8_vertical_desc = () => {
+      for (let i = 0; i < section8VerDesc.length; i++) {
+        section8VerDesc.item(i).classList.add("fade");
+      }
+    };
+
+    const section8_vertical_icon = () => {
+      for (let i = 0; i < section8VerIcon.length; i++) {
+        section8VerIcon.item(i).classList.add("fade");
+      }
+    };
 
     ScrollTrigger.create({
       trigger: ".section8-vertical",
-      start: "180% top",
+      start: "190% top",
       end: "200% bottom",
       markers: false,
+      onEnter: function () {
+        section8_vertical_bg();
+        section8_vertical_desc();
+        section8_vertical_icon();
+      },
     });
 
     /**
@@ -344,6 +404,9 @@ function App() {
     /**
      * section11 관련 animation 코드
      */
+    var section11bg = document.getElementById("section11-card-item-bg");
+    var section11arrow = document.getElementById("section11-arrow");
+
     const section11 = gsap.timeline();
     const section11_2 = gsap.timeline({
       scrollTrigger: {
@@ -387,7 +450,7 @@ function App() {
       )
       .from(".section11 .section11-arrow", { autoAlpha: 0, duration: 1 }, "a")
       .from(
-        ".section11 .section11-arrow .fadein",
+        ".section11 .down-title-item2",
         { autoAlpha: 0, delay: 1, duration: 1 },
         "a"
       );
@@ -408,6 +471,57 @@ function App() {
       },
       onEnterBack: function () {
         section11arrow.classList.add("fadeout");
+      },
+    });
+
+    /**
+     * section12 관련 animation 코드
+     */
+    const section12 = gsap.timeline();
+
+    section12
+      .from(".section12 .section12-text-wrap", { autoAlpha: 0, duration: 5 })
+      .from(".section12 .section12-arrow", { autoAlpha: 0, duration: 1 })
+      .addLabel("a")
+      .to(".section12 .section12-text-wrap", { autoAlpha: 0, duration: 1 }, "a")
+      .to(".section12 .section12-arrow", { autoAlpha: 0, duration: 1 }, "a");
+
+    ScrollTrigger.create({
+      animation: section12,
+      trigger: ".section12",
+      start: "top top",
+      end: "+=2000",
+      pin: true,
+      scrub: true,
+    });
+
+    /**
+     * section13 관련 animation 코드
+     */
+    var section13bg = document.getElementById("section13-bg");
+    var section13Ele = document.querySelector(".section13");
+
+    // var section13EleWidth =
+    //   $(window).width() -
+    //   $(".section13 .title-area").width() -
+    //   $(".section13 .card-list").width() -
+    //   $(".section13 .desc-area").width() -
+    //   500;
+
+    const section13 = gsap.timeline();
+
+    section13.to(".section13 .group-hori", { xPercent: -100, x: "100vw" });
+
+    ScrollTrigger.create({
+      animation: section13,
+      trigger: ".section13",
+      start: "top top",
+      end: "+=1500",
+      pin: true,
+      scrub: true,
+      onEnter: function () {
+        section13bg.classList.add("blur");
+        // $(".section13 .middle-area").fadeIn();
       },
     });
   }, []);
@@ -737,10 +851,27 @@ function App() {
                 <span>CREATOR</span>
                 <span className="section8-card-item-star">****</span>
               </div>
-              <img src="/images/card-code-img-1.png" alt="code" />
+              <img
+                className="section8-card-img"
+                src="/images/card-code-img-1.png"
+                alt="code"
+              />
               <div className="section8-card-item-bottom">
-                <div className="section8-card-item-name">ASSET</div>
-                <div>
+                <div className="section-card-item-name-wrap">
+                  <div className="section8-card-item-name-inner before">
+                    <div className="section8-card-item-circle1"></div>
+                    <div className="section8-card-item-name">model_top</div>
+                  </div>
+                  <div className="section8-card-item-name-inner after">
+                    ASSET
+                  </div>
+                </div>
+                <div className="section8-card-item-icon-wrap">
+                  <img
+                    className="section8-card-item-icon icon-expand"
+                    src="/images/expand-icon.png"
+                    alt="닫힘"
+                  />
                   <img
                     className="section8-card-item-icon icon-contract"
                     src="/images/contract-icon.png"
@@ -758,10 +889,27 @@ function App() {
                 </span>
                 <span className="section8-card-item-star">****</span>
               </div>
-              <img src="/images/card-code-img-2.png" alt="code" />
+              <img
+                className="section8-card-img"
+                src="/images/card-code-img-2.png"
+                alt="code"
+              />
               <div className="section8-card-item-bottom">
-                <div className="section8-card-item-name">ASSET</div>
-                <div>
+                <div className="section-card-item-name-wrap">
+                  <div className="section8-card-item-name-inner before">
+                    <div className="section8-card-item-circle2"></div>
+                    <div className="section8-card-item-name">elon.M</div>
+                  </div>
+                  <div className="section8-card-item-name-inner after">
+                    ASSET
+                  </div>
+                </div>
+                <div className="section8-card-item-icon-wrap">
+                  <img
+                    className="section8-card-item-icon icon-expand"
+                    src="/images/expand-icon.png"
+                    alt="닫힘"
+                  />
                   <img
                     className="section8-card-item-icon icon-contract"
                     src="/images/contract-icon.png"
@@ -779,10 +927,27 @@ function App() {
                 </span>
                 <span className="section8-card-item-star">****</span>
               </div>
-              <img src="/images/card-code-img-3.png" alt="code" />
+              <img
+                className="section8-card-img"
+                src="/images/card-code-img-3.png"
+                alt="code"
+              />
               <div className="section8-card-item-bottom">
-                <div className="section8-card-item-name">ASSET</div>
-                <div>
+                <div className="section-card-item-name-wrap">
+                  <div className="section8-card-item-name-inner before">
+                    <div className="section8-card-item-circle3"></div>
+                    <div className="section8-card-item-name">cafe22</div>
+                  </div>
+                  <div className="section8-card-item-name-inner after">
+                    ASSET
+                  </div>
+                </div>
+                <div className="section8-card-item-icon-wrap">
+                  <img
+                    className="section8-card-item-icon icon-expand"
+                    src="/images/expand-icon.png"
+                    alt="닫힘"
+                  />
                   <img
                     className="section8-card-item-icon icon-contract"
                     src="/images/contract-icon.png"
@@ -933,7 +1098,7 @@ function App() {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="section8-vertical-card-item-icon-wrap">
                     <img
                       className="section8-vertical-card-item-icon icon-expand"
                       src="/images/expand-icon.png"
@@ -978,7 +1143,7 @@ function App() {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="section8-vertical-card-item-icon-wrap">
                     <img
                       className="section8-vertical-card-item-icon icon-expand"
                       src="/images/expand-icon.png"
@@ -1023,14 +1188,14 @@ function App() {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="section8-vertical-card-item-icon-wrap">
                     <img
-                      className="section8-card-item-icon icon-expand"
+                      className="section8-vertical-card-item-icon icon-expand"
                       src="/images/expand-icon.png"
                       alt="배경안흐린상태"
                     />
                     <img
-                      className="section8-card-item-icon icon-contract"
+                      className="section8-vertical-card-item-icon icon-contract"
                       src="/images/contract-icon.png"
                       alt="배경흐려진상태"
                     />
@@ -1227,42 +1392,56 @@ function App() {
           </div>
         </div>
 
-        <div id="section11-arrow" className="section11-arrow fadein">
+        <div id="section11-arrow" className="section11-arrow">
           <div className="down">
             <div className="down-arrow">
-              <span className="down-arrow-item"></span>
-              <span className="down-arrow-item"></span>
-              <span className="down-arrow-item"></span>
-              <span className="down-arrow-item"></span>
-              <span className="down-arrow-item"></span>
-              <span className="down-arrow-item"></span>
-              <span className="down-arrow-item"></span>
+              <span className="down-arrow-item arrow1"></span>
+              <span className="down-arrow-item arrow2"></span>
+              <span className="down-arrow-item arrow3"></span>
+              <span className="down-arrow-item arrow4"></span>
+              <span className="down-arrow-item arrow5"></span>
+              <span className="down-arrow-item arrow6"></span>
+              <span className="down-arrow-item arrow7"></span>
             </div>
             <div className="down-title">
-              <span className="down-title-item">전통금융</span>
-              <span className="down-title-item">미래금융</span>
+              <span className="down-title-item1">전통금융</span>
+              <span className="down-title-item2">미래금융</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/*
-      <section>
-        <div>
-          <p>크리에이터</p>
-          <p>최소라 님의</p>
-          <p>DATA ID</p>
+      <section className="section12">
+        <div className="section12-text-wrap">
+          <div className="section12-text-top">
+            <p>크리에이터</p>
+            <p>최소라 님의</p>
+            <p>DATA ID</p>
+          </div>
+          <div className="section12-text-bottom">
+            이렇게 기록하고, 증명하고, <br />
+            성장할 수 있어요.
+          </div>
         </div>
-        <div>
-          이렇게 기록하고, 증명하고, <br />
-          성장할 수 있어요.
-        </div>
-        <img src="/images/creator-sec-bg.jpg" alt="빵들고있는제빵사" />
-      </section>
-      */}
 
-      {/*
-      <section>
+        <div className="section12-arrow">
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 40 40"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g fill="none" fill-rule="evenodd">
+              <path d="M40 40V0H0v40z"></path>
+              <g stroke="#FFF" stroke-width="2">
+                <path d="M20 31.18V6.566M31.429 21.29 20 32.72 8.571 21.29"></path>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section className="section13">
         <div>
           <p>슬기롭게</p>
           <p>사용하는 법.</p>
@@ -1361,7 +1540,6 @@ function App() {
           손쉽게 자산화 할 수 있어요.
         </div>
       </section>
-      */}
 
       {/*
       <section>
