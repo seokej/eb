@@ -12,8 +12,43 @@ function App() {
   gsap.registerPlugin(useGSAP, ScrollTrigger);
 
   useGSAP(() => {
-    var header = document.getElementById("header");
-    var body = document.body;
+    let header = document.getElementById("header");
+    let body = document.body;
+
+    /**
+     * topBtn 관련 scroll 애니메이션 코드
+     */
+    let topBtn = document.getElementById("topBtn");
+    let topBtnAction = document.getElementById("topBtnAction");
+
+    // 이전 스크롤 위치 초기화
+    let lastScroll = 0;
+
+    window.addEventListener("scroll", () => {
+      // 현재 스크롤 위치
+      const currentScroll = window.scrollY;
+
+      // 이전 스크롤 위치가 현재 스크롤 위치보다 클 경우 스크롤 up
+      if (currentScroll < lastScroll) {
+        topBtn.classList.add("on");
+      } else {
+        // 이전 스크롤 위치가 현재 스크롤 위치보다 작을 경우 스크롤 down
+        topBtn.classList.remove("on");
+      }
+
+      // 이전 스크롤 위치에 현재 스크롤 위치를 저장
+      // 다음 스크롤 때 현재 위치 기준으로 (위,아래) 파악하기 위해
+      lastScroll = currentScroll;
+    });
+
+    // topBtn버튼이 클릭되면 최상위로 이동
+    topBtnAction.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
 
     /**
      * nav 관련 scroll 애니메이션 코드
@@ -229,20 +264,20 @@ function App() {
     /**
      * section8 관련 animation 코드
      */
-    var section8icon = document.getElementsByClassName(
+    let section8Icon = document.getElementsByClassName(
       "section8-card-item-icon"
     );
-    var section8name = document.getElementsByClassName(
-      "section8-card-item-name-inner"
+    let section8Profile = document.getElementsByClassName(
+      "section8-card-item-profile-inner"
     );
-    var section8Img = document.getElementsByClassName("section8-card-img");
-    var section8VerDesc = document.getElementsByClassName(
+    let section8Img = document.getElementsByClassName("section8-card-img");
+    let section8VerDesc = document.getElementsByClassName(
       "section8-vertical-card-item-desc"
     );
-    var section8VerBg = document.getElementsByClassName(
+    let section8VerBg = document.getElementsByClassName(
       "section8-vertical-card-bg"
     );
-    var section8VerIcon = document.getElementsByClassName(
+    let section8VerIcon = document.getElementsByClassName(
       "section8-vertical-card-item-icon"
     );
 
@@ -309,14 +344,14 @@ function App() {
     };
 
     const secrion8_icon_fade = () => {
-      for (let i = 0; i < section8icon.length; i++) {
-        section8icon.item(i).classList.add("fade");
+      for (let i = 0; i < section8Icon.length; i++) {
+        section8Icon.item(i).classList.add("fade");
       }
     };
 
     const secrion8_name_fade = () => {
-      for (let i = 0; i < section8name.length; i++) {
-        section8name.item(i).classList.add("fade");
+      for (let i = 0; i < section8Profile.length; i++) {
+        section8Profile.item(i).classList.add("fade");
       }
     };
 
@@ -404,8 +439,8 @@ function App() {
     /**
      * section11 관련 animation 코드
      */
-    var section11bg = document.getElementById("section11-card-item-bg");
-    var section11arrow = document.getElementById("section11-arrow");
+    let section11bg = document.getElementById("section11-card-item-bg");
+    let section11arrow = document.getElementById("section11-arrow");
 
     const section11 = gsap.timeline();
     const section11_2 = gsap.timeline({
@@ -498,19 +533,14 @@ function App() {
     /**
      * section13 관련 animation 코드
      */
-    var section13bg = document.getElementById("section13-bg");
-    var section13Ele = document.querySelector(".section13");
-
-    // var section13EleWidth =
-    //   $(window).width() -
-    //   $(".section13 .title-area").width() -
-    //   $(".section13 .card-list").width() -
-    //   $(".section13 .desc-area").width() -
-    //   500;
+    let section13bg = document.getElementById("section13-card-bg");
+    let section13Icon = document.getElementsByClassName(
+      "section13-card-item-icon"
+    );
 
     const section13 = gsap.timeline();
 
-    section13.to(".section13 .group-hori", { xPercent: -100, x: "100vw" });
+    section13.to(".section13-inner", { xPercent: -100, x: "100vw" });
 
     ScrollTrigger.create({
       animation: section13,
@@ -857,12 +887,12 @@ function App() {
                 alt="code"
               />
               <div className="section8-card-item-bottom">
-                <div className="section-card-item-name-wrap">
-                  <div className="section8-card-item-name-inner before">
+                <div className="section8-card-item-profile">
+                  <div className="section8-card-item-profile-inner before">
                     <div className="section8-card-item-circle1"></div>
                     <div className="section8-card-item-name">model_top</div>
                   </div>
-                  <div className="section8-card-item-name-inner after">
+                  <div className="section8-card-item-profile-inner after">
                     ASSET
                   </div>
                 </div>
@@ -895,12 +925,12 @@ function App() {
                 alt="code"
               />
               <div className="section8-card-item-bottom">
-                <div className="section-card-item-name-wrap">
-                  <div className="section8-card-item-name-inner before">
+                <div className="section8-card-item-profile">
+                  <div className="section8-card-item-profile-inner before">
                     <div className="section8-card-item-circle2"></div>
                     <div className="section8-card-item-name">elon.M</div>
                   </div>
-                  <div className="section8-card-item-name-inner after">
+                  <div className="section8-card-item-profile-inner after">
                     ASSET
                   </div>
                 </div>
@@ -933,12 +963,12 @@ function App() {
                 alt="code"
               />
               <div className="section8-card-item-bottom">
-                <div className="section-card-item-name-wrap">
-                  <div className="section8-card-item-name-inner before">
+                <div className="section8-card-item-profile">
+                  <div className="section8-card-item-profile-inner before">
                     <div className="section8-card-item-circle3"></div>
                     <div className="section8-card-item-name">cafe22</div>
                   </div>
-                  <div className="section8-card-item-name-inner after">
+                  <div className="section8-card-item-profile-inner after">
                     ASSET
                   </div>
                 </div>
@@ -1092,7 +1122,7 @@ function App() {
 
                 <div className="section8-vertical-card-item-bottom">
                   <div className="section8-vertical-card-item-profile">
-                    <div className="section8-vertical-card-item-circle"></div>
+                    <div className="section8-vertical-card-item-circle1"></div>
                     <div className="section8-vertical-card-item-name">
                       model_top
                     </div>
@@ -1137,7 +1167,7 @@ function App() {
 
                 <div className="section8-vertical-card-item-bottom">
                   <div className="section8-vertical-card-item-profile">
-                    <div className="section8-vertical-card-item-circle"></div>
+                    <div className="section8-vertical-card-item-circle2"></div>
                     <div className="section8-vertical-card-item-name">
                       elon.M
                     </div>
@@ -1182,7 +1212,7 @@ function App() {
 
                 <div className="section8-vertical-card-item-bottom">
                   <div className="section8-vertical-card-item-profile">
-                    <div className="section8-vertical-card-item-circle"></div>
+                    <div className="section8-vertical-card-item-circle3"></div>
                     <div className="section8-vertical-card-item-name">
                       cafe22
                     </div>
@@ -1442,140 +1472,233 @@ function App() {
       </section>
 
       <section className="section13">
-        <div>
-          <p>슬기롭게</p>
-          <p>사용하는 법.</p>
-        </div>
-        <div>
-          <div>
-            <span>
-              CHOI
-              <br />
-              SORA
-            </span>
-            <span>****</span>
-            <div>
-              베이커리 레시피를 창작하고 유튜브와 <br />
-              쿠킹 클래스를 운영하는 크리에이터 최소라 님은 <br />
-              쿠킹 클래스 수강 이력, 레시피 사용 이력을 <br />
-              DATA ID에 기록해 관리하고 있어요.
-            </div>
-            <div>
-              <span></span>
-              <span>baker_sora</span>
-              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
-            </div>
-            <img src="/images/image-sec-4-1.png" alt="빵들고있는제빵사" />
+        <div className="section13-inner">
+          <div className="section13-title">
+            <p>슬기롭게</p>
+            <p>사용하는 법.</p>
           </div>
-          <div>
-            <span>
-              CERTIFICATE
-              <br />
-              DATA ID
-            </span>
-            <div>
-              아카데미 수료증과 자격증, 학위 증명서 등 <br />
-              여러 취득 내용을 모두 기록할 수 있어요.
-            </div>
-            <div>
-              <span>- 르꼬르동블루 제과 수료</span>
-              <span>- 나카무라 조리제과 수료</span>
-            </div>
-            <div>
-              <span></span>
-              <span>baker_sora</span>
-              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
-            </div>
-          </div>
-          <div>
-            <span>
-              ASSET
-              <br />
-              DATA ID
-            </span>
-            <div>
-              개발한 오리지널 레시피를 등록해두면 레시피에 <br />
-              대한 권리를 지키기 쉬워져요.
-            </div>
-            <div>
-              <span>- 최소라 쿠키 레시피</span>
-              <span>- 최소라 마카롱 레시피</span>
-            </div>
-            <div>
-              <span></span>
-              <span>baker_sora</span>
-              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
-            </div>
-          </div>
-          <div>
-            <span>
-              CONTRACT
-              <br />
-              DATA ID
-            </span>
-            <div>
-              누군가 내 레시피를 개량해서 다른 레시피를 <br />
-              개발하기 원한다면, 상대방과 스마트 계약을 <br />
-              체결할 수 있어요. <br />
-            </div>
-            <div>
-              <span>- 최소라 쿠키 레시피_오곡버전_나카페</span>
+
+          <div className="section13-card-item-wrap">
+            <div className="section13-card-item">
+              <div className="section13-card-item-top">
+                <div className="section13-card-item-head">
+                  <p>
+                    CHOI
+                    <br />
+                    SORA
+                  </p>
+                  <span className="section13-card-item-star">****</span>
+                </div>
+
+                <div className="section13-card-item-desc">
+                  베이커리 레시피를 창작하고 유튜브와 <br />
+                  쿠킹 클래스를 운영하는 크리에이터 최소라 님은 <br />
+                  쿠킹 클래스 수강 이력, 레시피 사용 이력을 <br />
+                  DATA ID에 기록해 관리하고 있어요.
+                </div>
+              </div>
+
+              <div className="section13-card-item-bottom">
+                <div className="section13-card-item-profile">
+                  <div className="section13-card-item-circle"></div>
+                  <div className="section13-card-item-name">baker_sora</div>
+                </div>
+
+                <div className="section13-card-item-icon-wrap">
+                  <img
+                    className="section13-card-item-icon icon-expand"
+                    src="/images/expand-icon.png"
+                    alt="배경안흐린상태"
+                  />
+                  <img
+                    className="section13-card-item-icon icon-contract"
+                    src="/images/contract-icon.png"
+                    alt="배경흐려진상태"
+                  />
+                </div>
+              </div>
+
+              <div id="section13-card-bg" className="section13-card-bg" />
             </div>
 
-            <div>
-              <span></span>
-              <span>baker_sora</span>
-              <img src="/images/expand-icon.png" alt="배경안흐린상태" />
-              <img src="/images/contract-icon.png" alt="배경흐려진상태" />
+            <div className="section13-card-item">
+              <div className="section13-card-item-top">
+                <div className="section13-card-item-head">
+                  <p>
+                    CERTIFICATE
+                    <br />
+                    DATA ID
+                  </p>
+                </div>
+
+                <div className="section13-card-item-desc">
+                  아카데미 수료증과 자격증, 학위 증명서 등 <br />
+                  여러 취득 내용을 모두 기록할 수 있어요.
+                  <br />
+                  <br />
+                  <div>- 르꼬르동블루 제과 수료</div>
+                  <div>- 나카무라 조리제과 수료</div>
+                </div>
+              </div>
+
+              <div className="section13-card-item-bottom">
+                <div className="section13-card-item-profile">
+                  <div className="section13-card-item-circle"></div>
+                  <div className="section13-card-item-name">baker_sora</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="section13-card-item">
+              <div className="section13-card-item-top">
+                <div className="section13-card-item-head">
+                  <p>
+                    ASSET
+                    <br />
+                    DATA ID
+                  </p>
+                </div>
+
+                <div className="section13-card-item-desc">
+                  개발한 오리지널 레시피를 등록해두면 레시피에 <br />
+                  대한 권리를 지키기 쉬워져요.
+                  <br />
+                  <br />
+                  <div>- 최소라 쿠키 레시피</div>
+                  <div>- 최소라 마카롱 레시피</div>
+                </div>
+              </div>
+
+              <div className="section13-card-item-bottom">
+                <div className="section13-card-item-profile">
+                  <div className="section13-card-item-circle"></div>
+                  <div className="section13-card-item-name">baker_sora</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="section13-card-item">
+              <div className="section13-card-item-top">
+                <div className="section13-card-item-head">
+                  <p>
+                    CONTRACT
+                    <br />
+                    DATA ID
+                  </p>
+                </div>
+
+                <div className="section13-card-item-desc">
+                  누군가 내 레시피를 개량해서 다른 레시피를 <br />
+                  개발하기 원한다면, 상대방과 스마트 계약을 <br />
+                  체결할 수 있어요.
+                  <br />
+                  <br />
+                  <div>- 최소라 쿠키 레시피_오곡버전_나카페</div>
+                </div>
+              </div>
+
+              <div className="section13-card-item-bottom">
+                <div className="section13-card-item-profile">
+                  <div className="section13-card-item-circle"></div>
+                  <div className="section13-card-item-name">baker_sora</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          이력과 거래 내역이 모두 <br />
-          DATA ID로 생성되고, <br />
-          스마트 계약으로 재능을 <br />
-          손쉽게 자산화 할 수 있어요.
+
+          <div className="section13-desc">
+            이력과 거래 내역이 모두 <br />
+            DATA ID로 생성되고, <br />
+            스마트 계약으로 재능을 <br />
+            손쉽게 자산화 할 수 있어요.
+          </div>
         </div>
       </section>
 
-      {/*
-      <section>
-        <p>오픈 이노베이션 그라운드</p>
-        <div>
-          글로벌 블록체인 네트워크 DATA ID를 통해 <br />
-          EBC가 만들어갈 오픈 이노베이션 그라운드에
-          <br />
-          참여하세요.
-          <br />
+      <section className="section14">
+        <div className="section14-inner">
+          <p className="section14-title">오픈 이노베이션 그라운드</p>
+          <div className="section14-desc">
+            글로벌 블록체인 네트워크 DATA ID를 통해 <br />
+            EBC가 만들어갈 오픈 이노베이션 그라운드에
+            <br />
+            참여하세요.
+            <br />
+          </div>
+          <div className="section14-link-wrap">
+            <a href="#" className="black">
+              회사소개서 다운로드
+            </a>
+            <a href="#">제휴문의</a>
+            <a href="#">채용문의</a>
+          </div>
         </div>
-        <div>
-          <div>회사소개서 다운로드</div>
-          <div>제휴문의</div>
-          <div>채용문의</div>
-        </div>
-
-        <div>JOIN us</div>
       </section>
-      */}
 
-      {/*
+      <section className="section15 play">
+        <h2 className="blind">Join us</h2>
+        <div className="section15-banner">
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+          <span>
+            JOIN <i>us</i>
+          </span>
+        </div>
+      </section>
+
       <footer>
-        <div>
-          <div>
-            서울특별시 강남구 테헤란로 424, 19층 (주)엔터프라이즈블록체인
+        <div className="footer-inner">
+          <div className="footer-info">
+            <div className="footer-addr">
+              서울특별시 강남구 테헤란로 424, 19층 (주)엔터프라이즈블록체인
+            </div>
+            <div className="footer-copyright">
+              COPYRIGHT © ENTERPRISE BLOCKCHAIN CO., LTD. ALL RIGHTS RESERVED.
+            </div>
           </div>
-          <div>
-            COPYRIGHT © ENTERPRISE BLOCKCHAIN CO., LTD. ALL RIGHTS RESERVED.
+
+          <div className="footer-logo">
+            <img src="/images/ft-logo-hori.png" alt="logo" />
           </div>
-        </div>
-        <div>
-          <img src="/images/ft-logo-hori.png" alt="logo" />
         </div>
       </footer>
-        */}
+
+      <div id="topBtn" className="on">
+        <a id="topBtnAction" href="#">
+          <span className="blind">맨위로</span>
+        </a>
+      </div>
     </EbComponentStyle>
   );
 }
